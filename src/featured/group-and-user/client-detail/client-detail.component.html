@@ -1,0 +1,199 @@
+
+<div class="row">
+  <div class="col-md-11 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="card-content">
+              <div class="row">
+          
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <!-- supplier -->
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12 mb-4"></div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                            <div class="img mt-4">
+                                <span *ngIf="detail?.id">
+                                    <!-- <i class="fas fa-user"></i> -->
+                                    <img src="{{url + detail?.id + '/profile.jpeg'}}" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 mb-4"></div>
+                       </div>  
+                      <br />
+                      <h4>Basic Information</h4>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Full Name</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.full_name }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Payment Option</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.payment_option }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Interested Area</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.interested_area_text }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Credit Limit</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.credit_limit }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Tin Number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.tin_number }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Credit Status</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.credit_status }}
+                              </div>
+                          </div>   
+                          <!-- <div class="col-md-4 col-sm-12 col-xs-12 mb-4">                            
+                          </div>    -->
+                          <div class="col-md-4 col-sm-12 col-xs-12">
+                            <label>Account Status</label>
+                            <ejs-dropdownlist 
+                            value={{detail?.status}}
+                            [dataSource]="accountStatusData" 
+                             [fields]="fields"
+                            (select)="onStatusSelect($event.itemData.value)"
+                            [formControl]="accountStatus"
+                            >
+                            
+                             
+                            </ejs-dropdownlist>
+                     
+                          </div>
+                      
+                          <div *ngIf="showReasonField"  class="mt-2 col-md-4 col-sm-12 col-xs-12">
+                            <label>Select Reason</label>
+                            <ejs-dropdownlist
+                            [ngClass]="reason.invalid?'invalid':''"
+                            [formControl]="reason"
+                            placeholder="Select a reason"
+                            [fields]="reasonFields"
+                            [dataSource]="lookup_data['account_disable_reasons']"
+                           >
+
+                           </ejs-dropdownlist>
+                          </div>
+                          <div class="col-md-4 col-sm-12 col-xs-12">
+                            <label>Request Approval</label>
+                            <ejs-dropdownlist 
+                            [formControl]="requestApproval"
+                            value={{detail?.request_approval}}
+                            [dataSource]="requestApprovalData" 
+                             [fields]="fields"
+                           >
+                          
+                            </ejs-dropdownlist>
+                     
+                          </div>
+                          <div class="mb-4 col-md-4 col-sm-12 col-xs-12">
+                            <label></label>
+                            <ejs-checkbox [formControl]="subscription" label="Allowed for subscription?" style="margin-top:34px;" (change)="onSetSubscribiton($event?.checked)"></ejs-checkbox>
+                          </div>
+            
+                         
+          
+                      </div>
+      
+                      <!-- address -->
+                      <br />
+                      <h4>Address</h4>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Region</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.region }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>City</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.city }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Sub City</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.sub_city }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Wereda</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.wereda }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>House Number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.house_number }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Phone number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.phone_number ?? '-- not specified --' }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Email Address</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.email_address ?? '-- not specified --'  }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Alternative Phone number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.alternative_phone_number ?? '-- not specified --' }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Alternative Email Address</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.alternative_email_address ?? '-- not specified --'  }}
+                              </div>
+                          </div>   
+                          <div class="col-md-12 col-sm-12 col-xs-12 mb-4">
+                              <label>Specific Location</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.location ?? '-- not specified --'  }}
+                              </div>
+                          </div>   
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12 buttons">
+                          <button ejs-button cssClass="e-info" (click)="onSubmit()">  <span *ngIf="!sending">
+                            Submit
+                        </span>
+                        <span *ngIf="sending ">
+                            <i class="fa fa-spinner fa-spin fa-fw"></i>
+                        </span></button>
+                        </div>
+                       <div class="col-md-6 col-sm-12 col-xs-12">
+                    
+                        <button ejs-button cssClass="e-warning" (click)="onBack()" style="float: right">Back</button>
+                    </div>
+                      </div>
+                  </div>
+                  <div class="col-md-1 col-sm-12 col-xs-12"></div>
+              </div>
+          </div>
+      </div>     
+  </div>
+</div>
+

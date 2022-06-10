@@ -1,0 +1,62 @@
+label {
+  color: gray;
+  font-weight: bolder;
+  margin-bottom: 10px !important;
+}
+
+.form-control {
+  color: gray;
+  background-color:aliceblue !important;
+}
+.card {
+  /* border-radius: 20px !important; */
+}
+.card-content{
+  margin-bottom: 15px !important;
+}
+
+h4 {
+  color: gray !important;
+  font-weight: bolder;
+}
+
+hr {
+  font-size: 15px !important;
+  color: gray !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+.active {
+  padding: 2px !important;
+  background-color: lightgreen;
+  /* border-radius: 7px; */
+  color: whitesmoke;
+  font-weight: bolder;
+  width: 100px;
+  text-align: center;
+}
+.other{
+  padding: 2px !important;
+  background-color: rgb(43, 54, 211);
+  /* border-radius: 7px; */
+  color: whitesmoke;
+  font-weight: bolder;
+  width: 200px;
+  text-align: center;
+}
+.deactive {
+  padding: 2px !important;
+  background-color: rgb(247, 84, 98);
+  /* border-radius: 7px; */
+  color: whitesmoke;
+  font-weight: bolder;
+  width: 100px;
+  text-align: center;
+}
+.buttons{
+  padding: 15px;
+}
+button{
+  width: 80px;
+  margin: 5px;
+}

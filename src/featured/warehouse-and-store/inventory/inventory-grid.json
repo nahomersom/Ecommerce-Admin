@@ -1,0 +1,79 @@
+{
+    "formPath": "ws/warehouse-and-store/inventory",
+    "dataApi": "market/inventory",
+    "deleteRowApi": "market/inventory/delete",
+    "pageName": "Inventory",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": null,
+    "columns": [
+
+        {
+            "field": "full_name",
+            "headerText": "Full name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "ware_house_name",
+            "headerText": "Warehouse",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "store_name",
+            "headerText": "Store",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "title",
+            "headerText": "Title",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "quantity",
+            "headerText": "Quantity",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "date",
+            "headerText": "Date",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+
+        {
+            "field": "inventory_status",
+            "headerText": "Status",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+    ]
+}

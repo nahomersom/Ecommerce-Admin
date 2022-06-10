@@ -1,0 +1,165 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Warehouse Name<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'ware_house_name')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(formGroup, 'ware_house_name')
+                  .valid
+              }"
+              class="e-input"
+              name="input"
+              formControlName="ware_house_name"
+              type="text"
+              placeholder="Warehouse Name"
+            />
+          </div>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Region<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'address.region').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'address.region').valid
+            }"
+            formControlName="region"
+            [dataSource]="lookup_data['region']"
+            (change)="load_city($event.itemData?.id, null, formGroup, 'city')"
+            [fields]="fields"
+            cssClass="e-outline"
+            placeholder="Region"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>City<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'address.city').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'address.city').valid
+            }"
+            [dataSource]="lookup_data['city']"
+            [fields]="fields"
+            (change)="
+              load_sub_city($event.itemData?.id, null, formGroup, 'sub_city')
+            "
+            formControlName="city"
+            cssClass="e-outline"
+            placeholder="City"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Sub city<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'address.sub_city').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'address.sub_city').valid
+            }"
+            formControlName="sub_city"
+            [dataSource]="lookup_data['sub_city']"
+            [fields]="fields"
+            cssClass="e-outline"
+            placeholder="Sub city"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Wereda<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'address.wereda').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'address.wereda').valid
+            }"
+            format="###"
+            class="e-input"
+            name="input"
+            formControlName="wereda"
+            type="text"
+            min="1"
+            placeholder="Wereda"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Location<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'address.location')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(formGroup, 'address.location')
+                  .valid
+              }"
+              class="e-input"
+              name="input"
+              formControlName="location"
+              type="text"
+              placeholder="Location"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Latitude</label>
+          <div class="e-input-group">
+            <input
+              class="e-input"
+              name="input"
+              formControlName="latitude"
+              type="text"
+              placeholder="Latitude"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName="address">
+          <label>Longitude</label>
+          <div class="e-input-group">
+            <input
+              class="e-input"
+              name="input"
+              formControlName="longitude"
+              type="text"
+              placeholder="Longitude"
+            />
+          </div>
+        </div>
+        <!-- <div  class="mb-4 col-md-12 col-sm-12 col-xs-12">
+            <label>Description</label>
+        
+              <ejs-textbox
+               
+                cssClass="e-outline"
+                multiline="true"
+                rows="3"
+                formControlName="description"
+                floatLabelType="Never"
+              ></ejs-textbox>
+
+          </div> -->
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

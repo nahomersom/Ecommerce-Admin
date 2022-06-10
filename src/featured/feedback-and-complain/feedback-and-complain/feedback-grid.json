@@ -1,0 +1,63 @@
+{
+    "formPath": "ws/feedback-and-complain",
+    "dataApi": "util/feedback",
+    "deleteRowApi": "util/feedback/detail",
+    "pageName": "Feedback",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showAdd": false,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": null,
+    "columns": [
+
+        {
+            "field": "complain_by",
+            "headerText": "Complain By",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "email_address",
+            "headerText": "Email",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "phone_number",
+            "headerText": "Phone Number",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "created_at",
+            "headerText": "Created at",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "status",
+            "headerText": "Status",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+    ]
+}

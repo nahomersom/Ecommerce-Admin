@@ -1,0 +1,139 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="storeFormGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Store Name<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(storeFormGroup, 'store_name')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(storeFormGroup, 'store_name')
+                  .valid
+              }"
+              class="e-input"
+              name="input"
+              formControlName="store_name"
+              type="text"
+              placeholder="Store Name"
+            />
+          </div>
+        </div>
+
+        <!-- <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Category<small class="astriks">*</small></label>
+        
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  storeFormGroup,
+                  'product_category_id'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  storeFormGroup,
+                  'product_category_id'
+                ).valid 
+              }"
+                cssClass="e-outline"
+                [dataSource]="parentCategoryList"
+                [fields]="productFields"
+                formControlName="product_category_id"
+                floatLabelType="Never"
+                placeholder="select category"
+              ></ejs-dropdownlist>
+              
+
+          </div> -->
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Category<small class="astriks">*</small></label>
+          <div class="form-group">
+            <p-cascadeSelect
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(storeFormGroup, 'product_category_id')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(
+                  storeFormGroup,
+                  'product_category_id'
+                ).valid
+              }"
+              [(ngModel)]="selectedNode"
+              [options]="parentCategoryList"
+              optionLabel="text"
+              optionGroupLabel="text"
+              formControlName="product_category_id"
+              [placeholder]="selectedCategory ?? placeholder"
+              [optionGroupChildren]="['children', 'children']"
+              [style]="{ height: '32px', width: '100%' }"
+            >
+            </p-cascadeSelect>
+
+            <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                            <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                            </span> -->
+          </div>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Warehouse<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(storeFormGroup, 'ware_house_id')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(storeFormGroup, 'ware_house_id')
+                .valid
+            }"
+            [dataSource]="warehouseList"
+            [fields]="fields"
+            cssClass="e-outline"
+            formControlName="ware_house_id"
+            floatLabelType="Never"
+            placeholder="select warehouse"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Storekeeper Name<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(storeFormGroup, 'store_keeper_name')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(
+                  storeFormGroup,
+                  'store_keeper_name'
+                ).valid
+              }"
+              class="e-input"
+              name="input"
+              type="text"
+              formControlName="store_keeper_name"
+              placeholder="Storekeeper Name"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-1 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start">Status<small class="astriks">*</small></label>
+            <br />
+
+            <ejs-checkbox
+              [checked]="
+                storeFormGroup.get('status').value == 1 ? 'true' : 'false'
+              "
+              label="Store Status"
+              formControlName="status"
+            >
+            </ejs-checkbox>
+          </div>
+        </div>
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

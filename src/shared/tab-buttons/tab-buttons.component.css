@@ -1,0 +1,38 @@
+
+.fa.fa-spinner.fa-spin.fa-fw {
+    color: aliceblue;
+}
+
+.buttons{
+  display:flex;
+  gap:20px;
+  justify-content: flex-start;
+}
+.buttons .save {
+    width: 100px;
+    background-color: #442363;
+    /* margin-left: -1px; */
+  }
+
+  .buttons .cancel {
+    width: 100px;
+    border: 1px solid #442363;
+    /* color:white; */
+  }
+
+  button {
+    width: 80px;
+    margin-left: 50px;
+    margin-top: 8px;
+    border:none;
+  }
+  .e-btn.e-info:disabled{
+    background-color:#d7d7d7 !important;
+  }
+  .e-btn.e-info{
+    border:none !important;
+    color: #fff !important;
+}
+.e-list-item .e-level-1 .e-active .e-node-focus{
+  background-color:red;
+}

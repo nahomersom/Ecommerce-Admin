@@ -1,0 +1,170 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="inventoryFormGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Warehouse<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(inventoryFormGroup, 'ware_house_id')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(inventoryFormGroup, 'ware_house_id')
+                .valid
+            }"
+            [dataSource]="warehouseList"
+            [fields]="fields"
+            cssClass="e-outline"
+            formControlName="ware_house_id"
+            floatLabelType="Never"
+            placeholder="warehouse"
+            (change)="
+              load_store($event.itemData?.value, null, inventoryFormGroup)
+            "
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Store<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(inventoryFormGroup, 'store_id')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(inventoryFormGroup, 'store_id')
+                .valid
+            }"
+            placeholder="store"
+            [dataSource]="storeList"
+            [fields]="fields"
+            cssClass="e-outline"
+            formControlName="store_id"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Product<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(inventoryFormGroup, 'product_id')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(inventoryFormGroup, 'product_id')
+                .valid
+            }"
+            [placeholder]="product_title ?? 'select product'"
+            [dataSource]="productData"
+            [fields]="fields"
+            [allowFiltering]="true"
+            (filtering)="load_product($event, supplier_id)"
+            cssClass="e-outline"
+            formControlName="product_id"
+            floatLabelType="Never"
+            (select)="onProductSelect($event.itemData)"
+          ></ejs-dropdownlist>
+
+          <!-- <span style="color:#442363" *ngIf="inventoryFormGroup.get('product_id').value && id"><b>( {{product_title}} )</b></span> -->
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Variants</label>
+          <div class="form-group">
+            <ejs-dropdownlist
+              placeholder="Variants"
+              [dataSource]="variantList"
+              [fields]="fields"
+              formControlName="product_variant_id"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Quantity<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(inventoryFormGroup, 'quantity')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(inventoryFormGroup, 'quantity')
+                .valid
+            }"
+            placeholder="Quantity"
+            cssClass="e-outline"
+            min="1"
+            format="###"
+            formControlName="quantity"
+            floatLabelType="Never"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start"
+              >Shelf Number<small class="astriks">*</small></label
+            >
+
+            <div class="e-input-group">
+              <input
+                class="e-input"
+                name="input"
+                formControlName="shelf_location"
+                placeholder="Shelf Number"
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(inventoryFormGroup, 'shelf_location')
+                      .invalid && formSubmitted,
+                  valid:
+                    crudService.getControl(inventoryFormGroup, 'shelf_location')
+                      .valid && formSubmitted
+                }"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start"
+              >Inventory status<small class="astriks">*</small></label
+            >
+
+            <ejs-dropdownlist
+              [fields]="fields"
+              placeholder="status"
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(inventoryFormGroup, 'inventory_status')
+                    .invalid && formSubmitted,
+                valid:
+                  crudService.getControl(inventoryFormGroup, 'inventory_status')
+                    .valid && formSubmitted
+              }"
+              [dataSource]="inventoryStatus"
+              formControlName="inventory_status"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Date<small class="astriks">*</small></label>
+          <ejs-datepicker
+            [ngClass]="{
+              invalid:
+                crudService.getControl(inventoryFormGroup, 'date').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(inventoryFormGroup, 'date').valid
+            }"
+            [value]="dateValue"
+            placeholder="Enter date"
+            formControlName="date"
+          ></ejs-datepicker>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

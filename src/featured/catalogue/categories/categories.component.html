@@ -1,0 +1,165 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="formGroup">
+      <div class="row mb-4">
+        <div class="col-9">
+          <div class="row">
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Category Type<small class="astriks">*</small></label>
+              <ejs-dropdownlist
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'area_id').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'area_id').valid
+                }"
+                formControlName="type"
+                placeholder="Select Category type"
+                [fields]="fields"
+                [dataSource]="categoryType"
+                (select)="onCategoryTypeSelect($event.itemData?.value)"
+              >
+              </ejs-dropdownlist>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Area<small class="astriks">*</small></label>
+              <ejs-dropdownlist
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'area_id').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'area_id').valid
+                }"
+                formControlName="area_id"
+                placeholder="Select area"
+                [fields]="fields"
+                [dataSource]="areaList"
+                (select)="load_parents($event.itemData?.value)"
+              >
+              </ejs-dropdownlist>
+            </div>
+
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Parent Category<small class="astriks">*</small></label>
+              <ejs-dropdownlist
+                showClearButton="true"
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'parent_category_id')
+                      .invalid && formSubmitted,
+                  valid: crudService.getControl(formGroup, 'parent_category_id')
+                    .valid
+                }"
+                [dataSource]="parentCategoryList"
+                [enabled]="enableParentCategory"
+                formControlName="parent_category_id"
+                [fields]="categoryFields"
+                placeholder="Select a Item"
+                #parent
+              ></ejs-dropdownlist>
+            </div>
+
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Category Name<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'category_name')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(formGroup, 'category_name')
+                      .valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="category_name"
+                  placeholder="Category Name"
+                />
+              </div>
+            </div>
+            <div class="mt-2 mb-4 col-md-2 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <!-- <label for="start"
+                  >Accept Stock Out Order<small class="astriks">*</small></label
+                > -->
+                <!-- <br /> -->
+
+                <ejs-checkbox
+                  label="Accept Stock Out Order"
+                  formControlName="accept_stockout_order"
+                >
+                </ejs-checkbox>
+              </div>
+            </div>
+
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>Description</label>
+              <ejs-textbox
+                formControlName="description"
+                multiline="true"
+                placeholder="Description"
+                rows="3"
+              >
+              </ejs-textbox>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <span class="mb-2 ml-3 d-flex justify-center" id="icon">Image</span>
+            <div class="col-3">
+              <div class="wrap">
+                <span *ngIf="image">
+                  <img [src]="image" id="main-profile-img" />
+                </span>
+
+                <span *ngIf="!image">
+                  <i
+                    class="fa fa-building fa-5x"
+                    aria-hidden="true"
+                    id="main-profile-img"
+                  ></i>
+                </span>
+                <button id="delete" (click)="onTrash()">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button class="e-btn e-control" id="browse">
+                  <i class="fa fa-edit"></i>
+                </button>
+                <span
+                  *ngIf="
+                    formSubmitted &&
+                    service.getControl(formGroup, 'image').hasError('required')
+                  "
+                  id="error"
+                  class="error"
+                >
+                  <small> * Image is required *</small></span
+                >
+              </div>
+
+              <ejs-uploader
+                #file
+                id="uploadLogo"
+                allowedExtensions="image/*"
+                minFi1eSize="10000"
+                maxFileSize="1500000"
+                [showFileList]="false"
+                [autoUpload]="false"
+                (change)="convert_from_base64(this, file.filesData[0], 'image')"
+                multiple="false"
+              ></ejs-uploader>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="row">
+          <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+        </div>
+    
+      </div>
+    </form>
+  </div>
+</div>

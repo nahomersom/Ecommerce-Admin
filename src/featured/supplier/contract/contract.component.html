@@ -1,0 +1,163 @@
+<div class="card">
+    <div class="card-content">
+      <form [formGroup]="formGroup">
+        <div class="row">
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Title<small class="astriks">*</small></label>
+            <div class="e-input-group">
+              <input
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'contract_title'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'contract_title'
+                ).valid 
+              }"
+                class="e-input"
+                name="input"
+                formControlName="contract_title"
+                type="text"
+  
+                placeholder="Title"
+              />
+            </div>
+          </div>
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Supplier<small class="astriks">*</small></label>
+        
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'supplier_id'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'supplier_id'
+                ).valid 
+              }"
+                allowFiltering="true"
+                [fields]="fields"
+                [dataSource]="supplierList"
+                cssClass="e-outline"
+                placeholder="Supplier"
+                formControlName="supplier_id"
+                floatLabelType="Never"
+              ></ejs-dropdownlist>
+
+          </div>
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Package<small class="astriks">*</small></label>
+        
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'package_id'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'package_id'
+                ).valid 
+              }"
+                 [fields]="fields"
+                [dataSource]="planList"
+                cssClass="e-outline"
+                placeholder="Plan"
+  
+                formControlName="package_id"
+                floatLabelType="Never"
+              ></ejs-dropdownlist>
+
+          </div>
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Date<small class="astriks">*</small></label>
+            <ejs-datepicker
+            [ngClass]="{
+              'invalid': crudService.getControl(
+                formGroup,
+                'date'
+              ).invalid && formSubmitted,
+              'valid': crudService.getControl(
+                formGroup,
+                'date'
+              ).valid 
+            }"
+            [value]='dateValue' placeholder='Enter date' (change)="onDateSelected($event)" formControlName="date"></ejs-datepicker>
+          </div>
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+            <label>Deadline<small class="astriks">*</small></label>
+            <ejs-datepicker 
+            [ngClass]="{
+              'invalid': crudService.getControl(
+                formGroup,
+                'deadline'
+              ).invalid && formSubmitted,
+              'valid': crudService.getControl(
+                formGroup,
+                'deadline'
+              ).valid 
+            }"
+            [value]='dateValue' placeholder='Enter date' [min]='deadline' formControlName="deadline" [enabled]="!disableDate"></ejs-datepicker>
+          </div>
+     
+          <div  class="mb-4 col-md-5 col-sm-12 col-xs-12">
+            <label>Attachment<small class="astriks">*</small></label>
+            <div class="control_wrapper">
+                  
+                <ejs-uploader #file
+                id='defaultfileupload'
+                formControlName="attachment"
+       
+                (change)="convert_from_base64(this,file.filesData[0],'attachment')"
+                sequentialUpload="true" multiple="false" allowedExtensions=".pdf"
+                 (selected)="fileSelected()"
+                 (removing)='onFileRemove($event)'></ejs-uploader>
+                 <span *ngIf="formSubmitted && service.getControl(formGroup,'attachment').hasError('required')" class="error">
+                  <small> * Attachment is required *</small></span>
+                
+            </div>
+
+          </div>
+          <div *ngIf="id && !isSelected" class="mt-5 col-md-1 col-sm-12 col-xs-12">
+            <span (click)="onOpenPdf()"><i class="fa fa-file-pdf-o fa-1x" aria-hidden="true" style="color:red;"></i></span>
+          </div>
+          <div *ngIf="id">
+            <div class="mb-4 col-md-3 col-sm-12 col-xs-12">
+              <button ejs-button cssClass="e-info" (click)="onExtendContract()">{{extendContract ? 'Cancel' : 'Extend Contract'}}</button>
+             </div>
+             <div  *ngIf="extendContract"  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+               <ejs-datepicker 
+               placeholder="Extension Date"
+               [min]="minDate"
+               [formControl]="extention_date"
+               
+               >
+   
+               </ejs-datepicker>
+
+             </div>
+             <div *ngIf="extendContract" class="mb-4 col-md-6 col-sm-12 col-xs-12">
+               <button ejs-button cssClass="e-warning" (click)="extend()" [disabled]="!extention_date.value || sending">
+                 <span *ngIf="sending">  
+                <i class="fa fa-spinner fa-spin fa-fw"></i>
+                 </span>
+                 <span *ngIf="!sending"  style="color:white">Extend</span>
+                </button>
+             </div>
+          </div>
+       
+        <hr />
+        <app-form-buttons
+          (submit)="Submit($event)"
+        
+        ></app-form-buttons>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  

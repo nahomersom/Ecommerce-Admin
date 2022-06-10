@@ -1,0 +1,55 @@
+{
+    "formPath": "ws/catalogue/area",
+    "dataApi": "catalogue/area",
+    "deleteRowApi": "catalogue/area/delete",
+    "pageName": "Area",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": "uploads/product/area/",
+    "columns": [
+
+        {
+            "field": "area_name",
+            "headerText": "Area Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "description",
+            "headerText": "Description",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "created_at",
+            "headerText": "Created At",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "total",
+            "headerText": "Total",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        }
+      
+    ]
+}

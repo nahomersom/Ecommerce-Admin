@@ -1,0 +1,46 @@
+{
+    "formPath": "ws/warehouse-and-store/warehouse",
+    "dataApi": "market/warehouse",
+    "deleteRowApi": "market/warehouse/delete",
+    "pageName": "Warehouse",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": null,
+    "columns": [
+
+        {
+            "field": "ware_house_name",
+            "headerText": "Warehouse name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "city",
+            "headerText": "City",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "sub_city",
+            "headerText": "Sub city",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        }
+    ]
+}

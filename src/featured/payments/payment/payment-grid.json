@@ -1,0 +1,93 @@
+{
+    "formPath": "ws/payments/payment", 
+    "dataApi": "accounting/payment",
+    "deleteRowApi": "accounting/payment/delete",
+    "pageName": "Payment",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url":null,
+    "columns": [
+
+        {
+            "field": "payment_method",
+            "headerText": "Payment Method",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "paid_for",
+            "headerText": "Paid For",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "amount_paid",
+            "headerText": "Amount Paid",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "payer",
+            "headerText": "Payer",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "payment_receiver",
+            "headerText": "Payment Receiver",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "order_number",
+            "headerText": "Order Number",
+            "textAlign": "left",
+            "width": 120,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "amount_remaining",
+            "headerText": "Amount Remaining",
+            "textAlign": "left",
+            "width": 120,
+            "visible": true,
+            "asCheckbox": false
+        },   {
+            "field": "date",
+            "headerText": "Date",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "payment_status",
+            "headerText": "Payment Status",
+            "textAlign": "left",
+            "width": 120,
+            "visible": true,
+            "asCheckbox": false
+        }
+    ]
+}

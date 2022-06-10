@@ -1,0 +1,32 @@
+
+.fa.fa-spinner.fa-spin.fa-fw {
+    color: aliceblue;
+}
+.buttons{
+  display:flex;
+  gap:29px;
+  justify-content: flex-start;
+}
+
+.buttons .save {
+    width: 100px;
+    background-color: #442363;
+    /* margin-left: -1px; */
+  }
+
+  .buttons .cancel {
+    width: 100px;
+    background-color: red;
+    color:white;
+  }
+
+  button {
+    width: 80px;
+
+    border:none;
+    
+  }
+  button:active{
+    box-shadow:none !important;
+    border:none !important;
+ }

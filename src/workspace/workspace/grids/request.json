@@ -1,0 +1,41 @@
+{
+    "dataApi": "util/dashboard/UserRequest",
+    "pageName": "notification",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": false,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "showAdd":false,
+    "showDelete":false,
+    "type":"notification",
+     
+    "columns": [
+
+        {
+            "field": "full_name",
+            "headerText": "Full Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "being",
+            "headerText": "Being",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "created_at",
+            "headerText": "Created At",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+      
+    ]
+}

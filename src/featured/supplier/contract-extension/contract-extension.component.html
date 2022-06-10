@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="contractExtensionFormGroup">
+      <div class="row">
+        <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+          <label>Contract<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(
+                  contractExtensionFormGroup,
+                  'contract_id'
+                ).invalid && formSubmitted,
+              valid: crudService.getControl(
+                contractExtensionFormGroup,
+                'contract_id'
+              ).valid
+            }"
+            cssClass="e-outline"
+            placeholder="Contract"
+            [fields]="fields"
+            [dataSource]="contractList"
+            formControlName="contract_id"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+          <label>Extension Date<small class="astriks">*</small></label>
+          <ejs-datepicker
+            [ngClass]="{
+              invalid:
+                crudService.getControl(
+                  contractExtensionFormGroup,
+                  'extention_date'
+                ).invalid && formSubmitted,
+              valid: crudService.getControl(
+                contractExtensionFormGroup,
+                'extention_date'
+              ).valid
+            }"
+            [value]="dateValue"
+            [min]="minDate"
+            placeholder="Enter date"
+            formControlName="extention_date"
+          ></ejs-datepicker>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

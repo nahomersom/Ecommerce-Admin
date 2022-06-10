@@ -1,0 +1,227 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+          <div class="card-content">
+              <div class="row">
+                  <div class="col-md-1 col-sm-12 col-xs-12"></div>
+                  <div class="col-md-10 col-sm-12 col-xs-12">
+                      <!-- supplier -->
+             
+                      <br />
+                      <h4>Order Inforamtion</h4>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Full Name</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.full_name }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Phone number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.phone_number }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Order number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.order_number }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Delivery Time</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.delivery_time }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Payment Method</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.payment_method }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Payment Status</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.payment_status }}
+                              </div>
+                          </div>   
+                           <!-- <div class="col-md-4 col-sm-12 col-xs-12 mb-4">                            
+                        </div>    -->
+                        <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                          <label>Order status</label>
+                          <div class="active" *ngIf="detail?.order_status == 'Accepted' ">
+                              Accepted
+                          </div>
+                          <div class="deactive" *ngIf="detail?.order_status == 'Denied' ">
+                              Denied
+                          </div>
+  
+                        <div class="other" *ngIf="getStatus(detail?.order_status)">
+                            {{detail?.order_status}}
+                        </div>
+                        </div> 
+                         
+          
+                      </div>
+      
+                      <!-- address -->
+                      <br />
+                      <h4>Address</h4>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Region</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.address.region }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>City</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.address.city }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Sub City</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.address.sub_city }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Wereda</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.address.wereda }}
+                              </div>
+                          </div>   
+                   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Email Address</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.email_address ?? '-- not specified --'  }}
+                              </div>
+                          </div>   
+                
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Phone number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.phone_number }}
+                              </div>
+                          </div>   
+                 
+                        <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                          <label>Email Address</label>
+                          <div class="form-control form-control-sm">
+                          {{ detail?.email_address ?? '-- not specified --'  }}
+                          </div>
+                      </div>
+               
+               
+                  <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                    <label>Contact Person Name</label>
+                    <div class="form-control form-control-sm">
+                    {{ detail?.contact_person_name ?? '-- not specified --'  }}
+                    </div>
+                </div>
+      
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Specific Location</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.location ?? '-- not specified --'  }}
+                              </div>
+                          </div>   
+                      </div>
+                      <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                        <label>View in map</label>
+                        <div>           
+                          <i class="fa fa-5 fa-map-marker" (click)="viewOnMap(detail.address.latitude,detail.address.longitude)"></i>
+                        </div>
+                   
+                    </div>
+      
+                      <!-- contact address -->
+                      <br />
+                      <h4>Order By</h4>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Full name</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.full_name }}
+                              </div>
+                          </div>   
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-4">
+                              <label>Phone number</label>
+                              <div class="form-control form-control-sm">
+                              {{ detail?.phone_number }}
+                              </div>
+                          </div>   
+            
+                      
+                           
+                      </div>
+                      <br />
+                      <h4>Product Items</h4>
+                      <hr />
+                      <div class="row">
+                       <div class="col-md-12 col-sm-12 col-xs-12 mb-4">
+                        <table class="table table-striped">
+                          <thead class="thead-dark">
+                            <tr >
+                              <th scope="col">#</th>
+                              <th scope="col">Title</th>
+                              <th scope="col">Product Variant</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Unit Price</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="detail?.products.length">
+                            <tr *ngFor="let product of detail?.products; let i = index">
+                              <td>{{ i + 1 }}</td>
+                              <td>{{ product.title ?? '-- not specified --'}}</td>
+                              <td>{{ product.product_variants_text ?? '-- not specified --' | titlecase}}</td>
+                              <td>{{ product.quantity ?? '-- not specified --'}}</td>
+                              <td>{{ product.unit_price ?? '-- not specified --'| titlecase }}</td>
+                              <td>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tbody *ngIf="!detail?.products.length">
+                            <tr>
+                              <td align="center" colspan="12">no record found</td>
+                            </tr>
+                          </tbody>
+                        </table>  
+            
+                      </div>
+                           
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12 buttons" *ngIf="!getStatus(detail?.order_status)">
+                          <button ejs-button cssClass="e-info" (click)="onSubmit('Accepted')">  <span *ngIf="!sending">
+                            Approve
+                        </span>
+                        <span *ngIf="sending ">
+                            <i class="fa fa-spinner fa-spin fa-fw"></i>
+                        </span></button>
+                          <button ejs-button cssClass="e-danger" (click)="onSubmit('Denied')">  <span *ngIf="!sending">
+                            Reject
+                        </span>
+                        <span *ngIf="sending">
+                            <i class="fa fa-spinner fa-spin fa-fw"></i>
+                        </span></button>
+                        </div>
+                        <div class="">
+                          <button ejs-button cssClass="e-warning" (click)="onBack()" style="float: right">Back</button>
+                        </div>
+                      </div>
+      
+                  </div>
+                  <div class="col-md-1 col-sm-12 col-xs-12"></div>
+              </div>
+          </div>
+      </div>     
+  </div>
+</div>
+

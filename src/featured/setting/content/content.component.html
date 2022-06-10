@@ -1,0 +1,220 @@
+<ejs-tab #tab>
+  <form [formGroup]="formGroup">
+    <e-tabitems>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Content</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="row">
+                <div class="mb-4 col-12 col-md-6">
+                  <label>Content type<small class="astriks">*</small></label>
+                  <ejs-dropdownlist
+                    [ngClass]="{
+                      invalid:
+                        crudService.getControl(formGroup, 'content_type')
+                          .invalid && formSubmitted,
+                      valid: crudService.getControl(formGroup, 'content_type')
+                        .valid
+                    }"
+                    [dataSource]="contentData"
+                    [fields]="contentFields"
+                    placeholder="select content type"
+                    formControlName="content_type"
+                    (select)="onContentTypeSelected($event.itemData)"
+                  >
+                  </ejs-dropdownlist>
+                </div>
+
+                <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                  <label>Content title<small class="astriks">*</small></label>
+                  <div class="e-input-group">
+                    <input
+                      [ngClass]="{
+                        invalid:
+                          crudService.getControl(formGroup, 'content_title')
+                            .invalid && formSubmitted,
+                        valid: crudService.getControl(
+                          formGroup,
+                          'content_title'
+                        ).valid
+                      }"
+                      class="e-input"
+                      name="input"
+                      type="text"
+                      placeholder="Content title"
+                      formControlName="content_title"
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label for="start"
+                      >Status<small class="astriks">*</small></label
+                    >
+                    <br />
+
+                    <ejs-checkbox
+                      label="Active"
+                      formControlName="status"
+                      [checked]="
+                        formGroup.get('status').value == 1 ? 'true' : 'false'
+                      "
+                    >
+                    </ejs-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>Content<small class="astriks">*</small></label>
+              <ejs-richtexteditor
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'content_body').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'content_body').valid
+                }"
+                #sample
+                placeholder="Type Here..........."
+                height="250"
+                [toolbarSettings]="tools"
+                formControlName="content_body"
+              ></ejs-richtexteditor>
+            </div>
+
+            <hr />
+            <app-tab-buttons
+              (next)="nextTab(1)"
+              (back)="previousTab(0)"
+              [disabled]="disableButton()"
+              style="margin-left: 20px !important"
+            ></app-tab-buttons>
+          </div>
+        </ng-template>
+      </e-tabitem>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Image</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="row">
+                <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                  <label>Image type<small class="astriks">*</small></label>
+                  <ejs-dropdownlist
+                    [ngClass]="{
+                      invalid:
+                        crudService.getControl(formGroup, 'image_type')
+                          .invalid && formSubmitted,
+                      valid: crudService.getControl(formGroup, 'image_type')
+                        .valid
+                    }"
+                    formControlName="image_type"
+                    [dataSource]="imageData"
+                    [fields]="imageFields"
+                    placeholder="select Image Type"
+                    (select)="onTypeSelect($event.itemData)"
+                  >
+                  </ejs-dropdownlist>
+                </div>
+                <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                  <label>Image text<small class="astriks">*</small></label>
+                  <div class="e-input-group">
+                    <input
+                      [ngClass]="{
+                        invalid:
+                          crudService.getControl(formGroup, 'image_text')
+                            .invalid && formSubmitted,
+                        valid: crudService.getControl(formGroup, 'image_text')
+                          .valid
+                      }"
+                      class="e-input"
+                      name="input"
+                      type="text"
+                      placeholder="Image text"
+                      formControlName="image_text"
+                    />
+                  </div>
+                </div>
+                <div
+                  *ngIf="carousel != undefined"
+                  class="mb-4 col-md-12 col-sm-12 col-xs"
+                >
+                  <div class="row mb">
+                    <ejs-uploader
+                      #file
+                      id="file"
+                      allowedExtensions="image/*"
+                      minFi1eSize="10000"
+                      maxFileSize="1500000"
+                      [showFileList]="false"
+                      [autoUpload]="false"
+                      [multiple]="carousel"
+                      (change)="
+                        convert_from_base64(this, file.filesData, 'image')
+                      "
+                    ></ejs-uploader>
+                  </div>
+                  <span
+                    *ngIf="
+                      formSubmitted &&
+                      crudService
+                        .getControl(formGroup, 'image')
+                        .hasError('required')
+                    "
+                    class="error"
+                  >
+                    <small style="color: red">
+                      * Image is required *</small
+                    ></span
+                  >
+                  <ul *ngIf="carousel" id="carousel">
+                    <li
+                      *ngFor="let carouselImage of imageArray; let i = index"
+                      id="image"
+                    >
+                      <img
+                        [src]="carouselImage"
+                        (click)="showLightbox(i, carouselImage)"
+                        style="width: 150px; height: 150px"
+                      />
+                      <!-- <angular-image-viewer [src]="image" (index)="i"></angular-image-viewer> -->
+                      <span (click)="onTrash(i)"
+                        ><i class="fa fa-times-circle fa-2x"></i
+                      ></span>
+                    </li>
+                  </ul>
+                  <div *ngIf="!carousel && image">
+                    <img [src]="image" />
+                    <span (click)="onTrash(null)"
+                      ><i
+                        class="fa fa-times-circle fa-2x"
+                        id="productThumbnailImage"
+                      ></i
+                    ></span>
+                  </div>
+
+                  <ng-image-fullscreen-view
+                    [images]="imageObject"
+                    [imageIndex]="currentIndex"
+                    [show]="showFlag"
+                    (close)="closeEventHandler()"
+                  >
+                  </ng-image-fullscreen-view>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+            <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+          </div>
+        </ng-template>
+      </e-tabitem>
+    </e-tabitems>
+  </form>
+</ejs-tab>

@@ -1,0 +1,593 @@
+<ejs-tab #tab>
+    <form [formGroup]="formGroup">
+    <e-tabitems>
+    
+      <e-tabitem >
+        <ng-template #headerText>
+            <div>Product Information</div>
+        </ng-template>
+        <p></p>
+        <ng-template #content class="content">
+          <div *ngIf="message!=null" class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
+            <strong>{{message}}</strong>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+              <div class="row mb-4">
+                <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='product_detail'>
+                  <label>Category</label>
+                  <div class="form-group">
+                  <p-cascadeSelect 
+                  [(ngModel)]="selectedNode" [options]
+                  ="parentCategoryList" optionLabel="text" optionGroupLabel="text" 
+                  formControlName='category'  [placeholder]="selectedCategory??placeholder"
+                  [optionGroupChildren]="['children', 'children']" 
+                  (onChange)="onCategorySelect($event.value.id)"
+                  [style]="{'height': '32px','width':'100%'}">
+                
+   
+                
+                
+                </p-cascadeSelect>
+          
+                  </div>
+                </div>
+                    <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='detail'>
+                      <label>Product Item<small class="astriks">*</small></label>
+                      <div class="form-group">
+                    
+                        <ejs-dropdownlist
+                        formControlName="product_item_id"
+                        placeholder="Product Item"
+                        [allowFiltering]='true'
+                        (filtering)='search_product($event)'
+                        [fields]="orderFields"
+                        [dataSource]="productByCategoryList"
+                        (select)="onProductSelect($event.itemData)"
+                        [ngClass]="{
+                          'invalid': !orders.length && formSubmitted,
+                          'valid': crudService.getControl(
+                            formGroup,
+                            'detail.product_item_id'
+                          ).valid
+                        }"
+                        >
+                    
+                        </ejs-dropdownlist>
+              
+                      </div>
+                    </div>
+                    <div *ngIf="hasVariant" class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='product_detail'>
+                      <label>Variants</label>
+                      <div class="form-group">
+                    
+                        <ejs-dropdownlist
+                        placeholder="Variants"
+                        [dataSource]="variantList"
+                        (select)="onVariantSelect($event.itemData)"
+                        formControlName="variant"
+                        >
+                    
+                        </ejs-dropdownlist>
+              
+                      </div>
+                    </div>
+                    <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='detail'>
+                      <label>Unit Price<small class="astriks">*</small></label>
+                      <div class="form-group">
+                    
+                        <ejs-textbox
+
+                        formControlName="unit_price"
+                        placeholder="Unit price"
+                        readonly='true'
+                        value = '{{variantPrice??noVariantPrice}}'
+                        >
+                    
+                        </ejs-textbox>
+              
+                      </div>
+                    </div>
+                    <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='detail'>
+                      <div class="form-group">
+                        <label for="start"
+                          >Quantity<small class="astriks">*</small></label
+                        >
+          
+                        <div class="e-input-group">
+                          <input
+                            [value]='min_order'
+                            class="e-input"
+                            name="input"
+                            formControlName="quantity"
+                            type="number"
+                            [min]='min_order'
+                            placeholder="Quantity"
+                            [ngClass]="{
+                              'invalid': !orders.length && formSubmitted,
+                              'valid': crudService.getControl(
+                                formGroup,
+                                'detail.quantity'
+                              ).valid
+                            }"
+                          />
+                        </div>
+                        </div>
+                        </div> 
+         
+         
+                        <div class="mb-4 col-md-3 col-sm-12 col">
+                          
+                          <button ejs-button cssClass="e-info"  (click)="onAddToCart()" class="cart" type="button"  [disabled]="crudService.getControl(this.formGroup,'detail').invalid" 
+                          >
+                          {{editCart ? 'Update Cart':'Add to Cart'}}
+                         </button>
+                        </div>
+                        <table class="table table-striped">
+                          <thead class="thead-dark">
+                            <tr >
+                              <th scope="col">#</th>
+                              <th scope="col">Image</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Unit Price</th>
+                              <th scope="col">Supplier</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="orders.length">
+                            <tr *ngFor="let order of orders; let i = index">
+                              <td>{{ i + 1 }}</td>
+                              <td><img src='{{ details[i]?.product_image}}'></td>
+                              <td>{{ details[i]?.product_name | titlecase}}</td>
+                              <td><span *ngIf="!hasStockOut">{{ order.quantity }}</span><span *ngIf="hasStockOut"><span style="text-decoration: line-through;">{{ order.quantity }}</span>{{stockout}}</span></td>
+                              <td><span *ngIf="!hasStockOut">{{ order.unit_price | titlecase }}</span><span *ngIf="hasStockOut"><span style="text-decoration: line-through;">{{ order.unit_price }}</span>{{price_variation}}</span></td>
+                              <td>{{details[i]?.supplier}}</td>
+                              <td>
+                                <button
+                                  ejs-button
+                                  cssClass="e-link"
+                                  iconCss="icon-delete"
+                                  (click)="onDelete(i)"
+                                ></button>
+                                <button
+                                ejs-button
+                                cssClass="e-link"
+                                iconCss="icon-view"
+                                (click)='onEdit(i)'
+                              ></button>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tbody *ngIf="!orders.length">
+                            <tr>
+                              <td align="center" colspan="12">no record found</td>
+                            </tr>
+                          </tbody>
+                        </table> 
+                  </div>      
+              <hr />
+              <app-tab-buttons (next)="nextTab(1)"  (back)="previousTab(0)" [disabled]="disableButton('firstTab')" style="margin-left: 20px !important;" ></app-tab-buttons>
+          
+        </ng-template>
+    </e-tabitem>
+    <e-tabitem>
+      <ng-template #headerText>
+          <div> Order Information </div>
+      </ng-template>
+  
+      <ng-template #content class="content">
+            <div class="row mb-4">
+                
+             <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='order_by'>
+              <label>Full Name<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input 
+                [ngClass]="{
+                  'invalid': crudService.getControl(
+                    formGroup,
+                    'order_by.full_name'
+                  ).invalid && formSubmitted,
+                  'valid': crudService.getControl(
+                    formGroup,
+                    'order_by.full_name'
+                  ).valid
+                }"
+                class="e-input" name='input'    type="text" 
+                formControlName="full_name"
+                placeholder="Full Name"/>
+            
+                </div>
+                      </div>
+                
+                      <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='order_by'>
+                        <div class="form-group">
+                          <label for="start"
+                            >Phone Number<small class="astriks">*</small></label
+                          >
+            
+                          <div class="e-input-group">
+                            <input
+                            [ngClass]="{
+                              'invalid': crudService.getControl(
+                                formGroup,
+                                'order_by.phone_number'
+                              ).invalid && formSubmitted,
+                              'valid': crudService.getControl(
+                                formGroup,
+                                'order_by.phone_number'
+                              ).valid
+                            }" 
+                              class="e-input"
+                              name="input"
+                              formControlName="phone_number"
+                              type="text"
+             
+                              
+                              placeholder="Phone Number"
+                            />
+                          </div>
+                          </div>
+                          </div> 
+           
+                          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                            <label>Client<small class="astriks">*</small></label>
+                            <div class="form-group">
+                          
+                              <ejs-dropdownlist
+                              [ngClass]="{
+                                'invalid': crudService.getControl(
+                                  formGroup,
+                                  'client_id'
+                                ).invalid && formSubmitted,
+                                'valid': crudService.getControl(
+                                  formGroup,
+                                  'client_id'
+                                ).valid
+                              }" 
+                              [allowFiltering]='true'
+                              (filtering)='filter_client($event)'
+                         
+                              [dataSource]="clientData"
+                              [fields]="orderFields"
+                              formControlName="client_id"
+                              [placeholder]="client??'Client'"
+                              (select)="onClientSelected($event.itemData)"
+                              >
+                              
+                              </ejs-dropdownlist>
+                              <!-- <span style="color:grey"><b>{{client}}</b></span> -->
+                            </div>
+                          </div>               
+                  <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                    <label>Payment Method<small class="astriks">*</small></label>
+                    <div class="form-group">
+                  
+                      <ejs-dropdownlist
+                      [ngClass]="{
+                        'invalid': crudService.getControl(
+                          formGroup,
+                          'payment_method'
+                        ).invalid && formSubmitted,
+                        'valid': crudService.getControl(
+                          formGroup,
+                          'payment_method'
+                        ).valid
+                      }" 
+                      [dataSource]="lookup_data['payment_method']"
+                      formControlName="payment_method"
+                      [fields]="fields"
+                      placeholder="Payment Method"
+                      >
+                  
+                      </ejs-dropdownlist>
+            
+                    </div>
+                  </div>
+              <div *ngIf="allowedForCredit" class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                <ejs-checkbox label="is credit?" formControlName="is_credit" (change)="onCreditChecked($event.checked)">
+
+                </ejs-checkbox>
+              </div>
+              <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <label for="start">Payment Status<small class="astriks">*</small></label>
+                  <br />
+             
+                  
+                      <ejs-dropdownlist
+                      [ngClass]="{
+                        'invalid': crudService.getControl(
+                          formGroup,
+                          'payment_status'
+                        ).invalid && formSubmitted,
+                        'valid': crudService.getControl(
+                          formGroup,
+                          'payment_status'
+                        ).valid
+                      }" 
+                      [dataSource]="lookup_data['payment_status']"
+                      formControlName="payment_status"
+                      [fields]="fields"
+                      placeholder="Payment Status"
+                      >
+                  
+                      </ejs-dropdownlist>
+            
+                    </div>
+                  </div>
+                  <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label for="start">Date and Time to deliver<small class="astriks">*</small></label>
+                      <br />
+      
+                      <ejs-datetimepicker
+                      formControlName="delivery_time"
+                      placeholder="Delivery Time"
+                      [ngClass]="{
+                        'invalid': crudService.getControl(
+                          formGroup,
+                          'delivery_time'
+                        ).invalid && formSubmitted,
+                        'valid': crudService.getControl(
+                          formGroup,
+                          'delivery_time'
+                        ).valid
+                      }" 
+                      ></ejs-datetimepicker>
+                    </div>
+                  </div>
+                  
+              
+    
+  
+              
+                    </div>
+               
+
+            <hr />
+            <app-tab-buttons (next)="nextTab(2)"
+            [disabled]="disableButton('secondTab')"
+            (back)="previousTab(0)" style="margin-left: 20px !important;" ></app-tab-buttons>
+        
+      </ng-template>
+  </e-tabitem>
+      <e-tabitem>
+          <ng-template #headerText>
+              <div>shipping_address</div>
+          </ng-template>
+          <ng-template #content class="content">
+            <div class="row mb-4">
+
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='shipping_address'>
+              <label for="start"
+                >Region<small class="astriks">*</small></label
+              >
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.region'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.region'
+                ).valid
+              }"
+                placeholder="Region"
+                formControlName="region"
+                [dataSource]="lookup_data['region']"
+                (change)="load_city($event.itemData?.id, null,formGroup,'city')"
+                [fields]="fields"
+                cssClass="e-outline"
+                placeholder="Region"
+                floatLabelType="Never"
+        
+              ></ejs-dropdownlist>
+            </div>
+     
+          <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='shipping_address'>
+       
+              <label for="start">City<small class="astriks">*</small></label>
+              <ejs-dropdownlist
+
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.city'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.city'
+                ).valid
+              }"
+                placeholder="City"
+                [dataSource]="lookup_data['city']"
+                [fields]="fields"
+                (change)="load_sub_city($event.itemData?.id, null,formGroup,'sub_city')"
+                formControlName="city"
+                cssClass="e-outline"
+                placeholder="City"
+                floatLabelType="Never"
+     
+              ></ejs-dropdownlist>
+            </div>
+
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='shipping_address'>
+       
+              <label for="start"
+                >Sub city<small class="astriks">*</small></label
+              >
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.sub_city'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'shipping_address.sub_city'
+                ).valid
+              }"
+                placeholder="Sub city"
+                formControlName="sub_city"
+                [dataSource]="lookup_data['sub_city']"
+                [fields]="fields"
+                cssClass="e-outline"
+                placeholder="Sub city"
+                floatLabelType="Never"
+
+              ></ejs-dropdownlist>
+            </div>
+     
+
+          <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='shipping_address'>
+
+              <label for="start"
+                >Woreda<small class="astriks">*</small></label
+              >
+
+
+                  <ejs-numerictextbox
+                  [ngClass]="{
+                    'invalid': crudService.getControl(
+                      formGroup,
+                      'shipping_address.wereda'
+                    ).invalid && formSubmitted,
+                    'valid': crudService.getControl(
+                      formGroup,
+                      'shipping_address.wereda'
+                    ).valid
+                  }"
+                     format="###"
+                    class="e-input"
+                    name="input"
+                    formControlName="wereda"
+                    type="text"
+                     min='1'
+                    placeholder="Wereda"
+                  ></ejs-numerictextbox>
+       
+              </div>
+              <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='shipping_address'>
+                <div class="form-group">
+                  <label for="start"
+                    >Email<small class="astriks">*</small></label
+                  >
+    
+                  <div class="e-input-group">
+                    <input
+                    [ngClass]="{
+                      'invalid': crudService.getControl(
+                        formGroup,
+                        'shipping_address.email_address'
+                      ).invalid && formSubmitted,
+                      'valid': crudService.getControl(
+                        formGroup,
+                        'shipping_address.email_address'
+                      ).valid
+                    }"
+                      class="e-input"
+                      name="input"
+                      formControlName="email_address"
+                      type="text"
+     
+                
+                      placeholder="Email"
+                    />
+                  </div>
+                  <span *ngIf="formSubmitted && service.getControl(formGroup,'shipping_address.email_address').hasError('email')" class="error">
+                    <small> * Invalid Email*</small>
+                  </span>
+                  </div>
+                  </div>
+              <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='shipping_address'>
+                <div class="form-group">
+                  <label for="start"
+                    >Phone Number<small class="astriks">*</small></label
+                  >
+    
+                  <div class="e-input-group">
+                    <input
+                    [ngClass]="{
+                      'invalid': crudService.getControl(
+                        formGroup,
+                        'shipping_address.phone_number'
+                      ).invalid && formSubmitted,
+                      'valid': crudService.getControl(
+                        formGroup,
+                        'shipping_address.phone_number'
+                      ).valid
+                    }" 
+                      class="e-input"
+                      name="input"
+                      formControlName="phone_number"
+                      type="text"
+     
+                      
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                  </div>
+                  </div> 
+
+
+                      <div class="mb-4 col-md-6 col-sm-12 col-xs-12"
+                      formGroupName='shipping_address'
+                      >
+                        <div class="form-group">
+                          <label for="start"
+                            >Latitude</label
+                          >
+            
+                          <div class="e-input-group">
+                            <input
+                              class="e-input"
+                              name="input"
+                              formControlName="latitude"
+                              type="text"
+             
+                        
+                              placeholder="Latitude"
+                            />
+                          </div>
+                          </div>
+                          </div> 
+
+                      <div class="mb-4 col-md-6 col-sm-12 col-xs-12"
+                      formGroupName='shipping_address'
+                      >
+                        <div class="form-group">
+                          <label for="start"
+                            >Longitude</label
+                          >
+            
+                          <div class="e-input-group">
+                            <input
+                              class="e-input"
+                              name="input"
+                              formControlName="longitude"
+                              type="text"
+             
+                        
+                              placeholder="Longitude"
+                            />
+                          </div>
+                          </div>
+                          </div> 
+                          </div>
+  
+   
+            <hr />
+           <div class="row">    <app-form-buttons (submit)="Submit($event)"></app-form-buttons></div>
+        
+         
+         
+          
+          </ng-template>
+      </e-tabitem>
+
+    </e-tabitems>
+  </form>
+  </ejs-tab>
+  
+  

@@ -1,0 +1,592 @@
+<ejs-tab id="element" #tab>
+    <form [formGroup]="formGroup">
+    <e-tabitems>
+      <e-tabitem>
+          <ng-template #headerText>
+              <div> Client Information </div>
+          </ng-template>
+          <p></p>
+          <ng-template #content class="content">
+                <div class="row mb-4">
+                  <div class="col-9">      
+                    <div class="row">
+                      <div  class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='account'>
+                        <label>Full Name<small class="astriks">*</small></label>
+                        <div class="e-input-group">
+                          <input 
+                          [ngClass]="{
+                            'invalid': crudService.getControl(
+                              formGroup,
+                              'account.full_name'
+                            ).invalid && formSubmitted,
+                            'valid': crudService.getControl(
+                              formGroup,
+                              'account.full_name'
+                            ).valid
+                          }"
+                          class="e-input" name='input'    type="text" 
+                          formControlName="full_name"
+                          placeholder="Full Name"/>
+                      
+                          </div>
+             
+                      </div>
+
+                     
+                      <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label>Interested Area<small class="astriks">*</small></label>
+                        <div class="form-group">
+                  <ejs-multiselect
+                  #interestedArea
+                  [ngClass]="{
+                    'invalid': crudService.getControl(
+                      formGroup,
+                      'interested_area'
+                    ).invalid && formSubmitted,
+                    'valid': crudService.getControl(
+                      formGroup,
+                      'interested_area'
+                    ).valid
+                  }"
+                  id='multiselectelement'   mode='CheckBox' [dataSource]="areaList" 
+                  [fields]="areaFields" formControlName="interested_area"
+                  placeholder="Interested Area"></ejs-multiselect>
+                        </div>
+                      </div>
+                      <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label></label>
+                        <ejs-checkbox label="Allowed for credit Facility?" style="margin-top:34px;" (change)="onCreditFacilityChecked($event?.checked)"></ejs-checkbox>
+                      </div>
+                      <div *ngIf="hasCreditFacility"  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label>Total Credit Limit<small class="astriks">*</small></label>
+                  
+                          <ejs-numerictextbox
+                          [ngClass]="{
+                            'invalid': crudService.getControl(
+                              formGroup,
+                              'total_credit_limit'
+                            ).invalid && formSubmitted,
+                            'valid': crudService.getControl(
+                              formGroup,
+                              'total_credit_limit'
+                            ).valid
+                          }"
+                          class="e-input" name='input' 
+                          min='1'
+                          type="text" 
+                          formControlName="total_credit_limit"
+                          placeholder="Total time credit limit"></ejs-numerictextbox>
+                      
+                        
+             
+                      </div>
+                      <div *ngIf="hasCreditFacility" class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label>One Time Credit Limit<small class="astriks">*</small></label>
+                  
+                          <ejs-numerictextbox
+                          [ngClass]="{
+                            'invalid': crudService.getControl(
+                              formGroup,
+                              'one_time_credit_limit'
+                            ).invalid && formSubmitted,
+                            'valid': crudService.getControl(
+                              formGroup,
+                              'one_time_credit_limit'
+                            ).valid
+                          }"
+                          class="e-input" name='input' 
+                          min='1'
+                          type="text" 
+                          formControlName="one_time_credit_limit"
+                          placeholder="One time credit limit"></ejs-numerictextbox>
+                      
+                        
+             
+                      </div>
+                 
+                      <div *ngIf="hasCreditFacility" class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <label for="start">Credit Status<small class="astriks">*</small></label>
+                          <br />
+          
+                          <ejs-dropdownlist
+                          placeholder="Credit Status"
+                          formControlName="credit_status"
+                          [dataSource]="lookup_data['credit_status']"
+                           [fields]="fields"
+                          >
+                          </ejs-dropdownlist>
+                          
+                        </div>
+                      </div>
+                      <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label>Tin no<small class="astriks">*</small></label>
+                        <div class="e-input-group">
+                          <input
+                          [ngClass]="{
+                            'invalid': crudService.getControl(
+                              formGroup,
+                              'tin_number'
+                            ).invalid && formSubmitted,
+                            'valid': crudService.getControl(
+                              formGroup,
+                              'tin_number'
+                            ).valid
+                          }"
+                          class="e-input" name='input'    type="text" 
+                          formControlName="tin_number"
+                          placeholder="Tin no"/>
+                      
+                          </div>
+             
+                      </div>
+                      <div  class="mb-4 col-md-6 col-sm-12 col-xs-12">
+                        <label>Payment option<small class="astriks">*</small></label>
+                        <div class="form-group">
+                      
+                          <ejs-dropdownlist
+                          [ngClass]="{
+                            'invalid': crudService.getControl(
+                              formGroup,
+                              'payment_option'
+                            ).invalid && formSubmitted,
+                            'valid': crudService.getControl(
+                              formGroup,
+                              'payment_option'
+                            ).valid
+                          }"
+                          [dataSource]="lookup_data['payment_option']"
+                          [fields]="fields"
+                          formControlName="payment_option"
+                          placeholder="Payment Option"
+                          >
+                      
+                          </ejs-dropdownlist>
+
+                        </div>
+                      </div>
+                    </div>      
+                    
+                </div>
+                <div class="col-3" >
+             
+                  <div class="wrap">
+                    
+                    <span *ngIf="image">
+                      <img [src]="image" id="main-profile-img" />
+                    </span>
+
+                    <span *ngIf="!image">
+                      <i
+                        class="fa fa-user fa-5x"
+                        aria-hidden="true"
+                        id="main-profile-img"
+                      ></i>
+                    </span>
+                    <button id="delete" (click)="onTrash()">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <button class="e-btn e-control" id="browse" (click)="onUploadButtonClicked()">
+                      <i class="fa fa-edit"></i>
+                    </button>
+                    <span *ngIf="formSubmitted && service.getControl(formGroup,'image').hasError('required')" class="error" id="error">
+                      <small> * Image is required *</small></span>
+                  </div>
+                  
+                  <ejs-uploader
+                    #file
+                    id="uploadLogo"
+                    allowedExtensions="image/*"
+                    minFi1eSize="10000"
+                    maxFileSize="1500000"
+                    [showFileList]="false"
+                    [autoUpload]="false"
+                    (change)="convert_from_base64(this,file.filesData[0],'image')"
+                    multiple="false"
+                  ></ejs-uploader>
+                </div>
+    
+
+ 
+                </div>
+                <hr />
+                <app-tab-buttons (next)="nextTab(1)" (back)="previousTab(0)" style="margin-left: 20px !important;" [disabled]="disableButton('firstTab')" ></app-tab-buttons>
+            
+          </ng-template>
+      </e-tabitem>
+      <e-tabitem>
+          <ng-template #headerText>
+              <div>Address</div>
+          </ng-template>
+          <ng-template #content class="content">
+            <div class="row mb-4">
+              <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='account'>
+                <div class="form-group">
+                  <label for="start"
+                    >Email<small class="astriks">*</small></label
+                  >
+    
+                  <div class="e-input-group">
+                    <input
+                    [ngClass]="{
+                      'invalid': crudService.getControl(
+                        formGroup,
+                        'account.email'
+                      ).invalid && formSubmitted,
+                      'valid': crudService.getControl(
+                        formGroup,
+                        'account.email'
+                      ).valid
+                    }"
+                      class="e-input"
+                      name="input"
+                      formControlName="email"
+                      type="text"
+     
+                      placeholder="Email"
+                    />
+                  </div>
+                  <span *ngIf="formSubmitted && service.getControl(formGroup,'account.email').hasError('email')" class="error">
+                    <small> * Invalid Email*</small>
+                  </span>
+                  </div>
+                  </div>
+                  <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='account'>
+                    <div class="form-group">
+                      <label for="start"
+                        >Phone Number<small class="astriks">*</small></label
+                      >
+        
+                      <div class="e-input-group">
+                        <input
+                        [ngClass]="{
+                          'invalid': crudService.getControl(
+                            formGroup,
+                            'account.phone_number'
+                          ).invalid && formSubmitted,
+                          'valid': crudService.getControl(
+                            formGroup,
+                            'account.phone_number'
+                          ).valid
+                        }" 
+                          class="e-input"
+                          name="input"
+                          formControlName="phone_number"
+                          type="text"
+                          maxlength="10"
+                          minlength="9"
+                          placeholder="Phone Number"
+                        />
+                      </div>
+                      <span *ngIf="formSubmitted && (service.getControl(formGroup,'account.phone_number').hasError('minlength')||service.getControl(formGroup,'account.phone_number').hasError('maxlength'))" class="error">
+                        <small> *invalid phone number length *</small>
+                      </span>
+                      </div>
+                      </div> 
+             
+              <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='address' >
+              <label for="start"
+                >Region<small class="astriks">*</small></label
+              >
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'address.region'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'address.region'
+                ).valid
+              }"
+              [dataSource]="lookup_data['region']"
+              (change)="load_city($event.itemData?.id, null,formGroup,'city')"
+              [fields]="fields"
+                formControlName="region"
+                cssClass="e-outline"
+                placeholder="Region"
+                floatLabelType="Never"
+        
+              ></ejs-dropdownlist>
+            </div>
+     
+          <div class="mb-4 col-md-6 col-sm-12 col-xs-12" formGroupName='address'>
+       
+              <label for="start">City<small class="astriks">*</small></label>
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'address.city'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'address.city'
+                ).valid
+              }"
+              [dataSource]="lookup_data['city']"
+              [fields]="fields"
+              (change)="load_sub_city($event.itemData?.id, null,formGroup,'sub_city')"
+                formControlName="city"
+                cssClass="e-outline"
+                placeholder="City"
+                floatLabelType="Never"
+     
+              ></ejs-dropdownlist>
+            </div>
+
+          <div  class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+       
+              <label for="start"
+                >Sub city<small class="astriks">*</small></label
+              >
+              <ejs-dropdownlist
+              [ngClass]="{
+                'invalid': crudService.getControl(
+                  formGroup,
+                  'address.sub_city'
+                ).invalid && formSubmitted,
+                'valid': crudService.getControl(
+                  formGroup,
+                  'address.sub_city'
+                ).valid
+              }"
+              [dataSource]="lookup_data['sub_city']"
+              [fields]="fields"
+                formControlName="sub_city"
+                cssClass="e-outline"
+                placeholder="Sub city"
+                floatLabelType="Never"
+
+              ></ejs-dropdownlist>
+            </div>
+     
+
+          <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+
+              <label for="start"
+                >Woreda<small class="astriks">*</small></label
+              >
+
+   
+                  <ejs-numerictextbox
+                  [ngClass]="{
+                    'invalid': crudService.getControl(
+                      formGroup,
+                      'address.wereda'
+                    ).invalid && formSubmitted,
+                    'valid': crudService.getControl(
+                      formGroup,
+                      'address.wereda'
+                    ).valid
+                  }"
+                  format="###"
+                    class="e-input"
+                    min='1'
+                    name="input"
+                    formControlName="wereda"
+                    type="text"
+                    placeholder="Wereda"
+                  ></ejs-numerictextbox>
+                  </div>
+      
+
+                          <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+                            <div class="form-group">
+                              <label for="start"
+                                >House no<small class="astriks">*</small></label
+                              >
+                
+                              <div class="e-input-group">
+                                <input
+                                [ngClass]="{
+                                  'invalid': crudService.getControl(
+                                    formGroup,
+                                    'address.house_number'
+                                  ).invalid && formSubmitted,
+                                  'valid': crudService.getControl(
+                                    formGroup,
+                                    'address.house_number'
+                                  ).valid
+                                }"
+                                  class="e-input"
+                                  name="input"
+                                  formControlName="house_number"
+                                  type="text"
+                 
+                       
+                                  placeholder="House no"
+                                />
+                              </div>
+                              </div>
+                              </div> 
+                              <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+                                <div class="form-group">
+                                  <label for="start"
+                                    >Location<small class="astriks">*</small></label
+                                  >
+                    
+                                  <div class="e-input-group">
+                                    <input
+                                    [ngClass]="{
+                                      'invalid': crudService.getControl(
+                                        formGroup,
+                                        'address.location'
+                                      ).invalid && formSubmitted,
+                                      'valid': crudService.getControl(
+                                        formGroup,
+                                        'address.location'
+                                      ).valid
+                                    }"
+                                      class="e-input"
+                                      name="input"
+                                      formControlName="location"
+                                      type="text"
+                     
+                           
+                                      placeholder="Location"
+                                    />
+                                  </div>
+                                  </div>
+                                  </div> 
+                                  <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+                                    <div class="form-group">
+                                      <label for="start"
+                                        >Alternative Email</label
+                                      >
+                        
+                                      <div class="e-input-group">
+                                        <input
+                                        [ngClass]="{
+                                          'invalid': crudService.getControl(
+                                            formGroup,
+                                            'address.alternative_email_address'
+                                          ).invalid && formSubmitted,
+                                          'valid': crudService.getControl(
+                                            formGroup,
+                                            'address.alternative_email_address'
+                                          ).valid
+                                        }"  
+                                        class="e-input"
+                                          name="input"
+                                          formControlName="alternative_email_address"
+                                          type="text"
+                                          
+                                         
+                                          placeholder="Alternative Email Address"
+                                        />
+                                      </div>
+                                      <span *ngIf="formSubmitted && service.getControl(formGroup,'address.alternative_email_address').hasError('email')" class="error">
+                                        <small> * Invalid Email*</small>
+                                      </span>
+                                      </div>
+                                      </div> 
+                
+                                          <div class="mb-4 col-md-6 col-sm-12 col-xs-12 "formGroupName='address'>
+                                            <div class="form-group">
+                                              <label for="start"
+                                                >Alternative Phone Number</label
+                                              >
+                                              
+                                              <div class="e-input-group">
+                                                <input
+                                                  class="e-input"
+                                                  name="input"
+                                                  formControlName="alternative_phone_number"
+                                                  type="text"
+                                                  maxlength="10"
+                                                  placeholder="Alternative Phone Number"
+                                                />
+                                              </div>
+                                              <span *ngIf="formSubmitted && (service.getControl(formGroup,'account.alternative_phone_number').hasError('minlength')||service.getControl(formGroup,'account.alternative_phone_number').hasError('maxlength'))" class="error">
+                                                <small> *phone number length must be 10 digit*</small>
+                                              </span>
+                                              </div>
+                                              </div> 
+                          </div>
+  
+   
+            <hr />
+            <app-tab-buttons [disabled]="disableButton('secondTab')" (next)="nextTab(2)" (back)="previousTab(0)" style="margin-left: 20px !important;" ></app-tab-buttons>
+         
+          
+          </ng-template>
+      </e-tabitem>
+
+    <e-tabitem>
+      <ng-template #headerText>
+          <div>Attachment</div>
+      </ng-template>
+      <ng-template #content class="content">
+        <div class="control-section">
+          <div class="col-lg-12">
+            <div class="mb4 row">
+              <label for="start"
+              >Title of the file<small class="astriks">*</small></label
+            > 
+               
+              <div class="mb-4 col-md-4 col-sm-12 col-xs-12" formGroupName="attachment">
+                                    <div class="e-input-group">
+                      <input
+                      [ngClass]="{
+                        'invalid': !attachments.length && formSubmitted,
+                        'valid': crudService.getControl(
+                          formGroup,
+                          'attachment.title'
+                        ).valid
+                    }"
+                      
+                        class="e-input"
+                        name="input"
+                        formControlName="title"
+                        type="text"
+       
+                        
+                        placeholder="Title of the file"
+                      />
+                    </div>
+                    </div>
+             
+              <div class="d-flex justify-space-around mb-4 col-md-3 col-sm-12 col-xs-12" formGroupName="attachment" >   
+              <input type="file"   accept=".pdf" (change)="uploading_file($event)" id="file">
+              <div class=""><button [disabled]="crudService.getControl(this.formGroup,'attachment').invalid" ejs-button cssClass="e-round" iconCss="e-icons e-plus-icon" (click)="addAttachment()" ></button></div>
+            </div>
+            </div>
+          </div>
+      </div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody  *ngIf="attachments.length">
+          <tr *ngFor="let attachment of attachments; let i=index" >
+        
+            <td>{{i+1}}</td>
+            <td>{{attachment.title}}</td>
+             <td>
+              <button ejs-button cssClass="e-link" iconCss="icon-view" *ngIf="attachment.showEdit" (click)="onView(attachment.file)"></button>
+               <button ejs-button cssClass="e-link" iconCss="icon-delete"  (click)="onDelete(i,attachment.showEdit,attachment.title)"></button>
+             
+               </td>
+          </tr>
+     
+        </tbody>
+        <tbody *ngIf="!attachments.length">
+         <tr>
+           <td colspan="4" align="center">No record found</td>
+         </tr>
+        </tbody>
+      </table>
+      <button *ngIf="isUpdate" class="btn btn-primary" (click)="uploadAttachment()" style="display:flex; justify-content:center;">Upload</button>
+      <app-form-buttons (submit)="Submit($event)" style="margin-left: 20px !important;"></app-form-buttons>
+      </ng-template>
+  </e-tabitem> 
+  </e-tabitems>
+  </form>
+  </ejs-tab>
+  
+  

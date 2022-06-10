@@ -1,0 +1,247 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Paid For<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'paid_for').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'paid_for').valid
+            }"
+            [fields]="fields"
+            [dataSource]="paidFor"
+            (select)="onPaidForSelected($event.itemData.value)"
+            formControlName="paid_for"
+            cssClass="e-outline"
+            placeholder="Paid For"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div
+          *ngIf="!isForOrder && payedForSelected"
+          class="mb-4 col-md-6 col-sm-12 col-xs-12"
+        >
+          <label>Supplier<small class="astriks">*</small></label>
+          <div class="form-group">
+            <ejs-dropdownlist
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'supplier').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'supplier').valid
+              }"
+              allowFiltering="true"
+              formControlName="supplier"
+              [fields]="orderFields"
+              (filtering)="search_supplier($event)"
+              (select)="onSupplierSelected($event.itemData.value)"
+              placeholder="Supplier"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+        <div
+          *ngIf="isForOrder && payedForSelected"
+          class="mb-4 col-md-6 col-sm-12 col-xs-12"
+        >
+          <label>Client<small class="astriks">*</small></label>
+          <div class="form-group">
+            <ejs-dropdownlist
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'client').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'client').valid
+              }"
+              allowFiltering="true"
+              formControlName="client"
+              [fields]="orderFields"
+              (filtering)="filter_client($event)"
+              placeholder="Client"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+        <div *ngIf="isForOrder" class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Order number<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'order_id').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'order_id').valid
+            }"
+            [allowFiltering]="true"
+            (filtering)="filter_order_no($event, supplier_id)"
+            [fields]="orderFields"
+            [dataSource]="orderData"
+            formControlName="order_id"
+            cssClass="e-outline"
+            [placeholder]="orderNumber ?? 'Order number'"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Payment Method<small class="astriks">*</small></label>
+          <div class="form-group">
+            <ejs-dropdownlist
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'payment_method').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'payment_method').valid
+              }"
+              [dataSource]="lookup_data['payment_method']"
+              formControlName="payment_method"
+              [fields]="fields"
+              placeholder="Payment Method"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+
+        <div
+          *ngIf="!isForOrder && payedForSelected"
+          class="mb-4 col-md-6 col-sm-12 col-xs-12"
+        >
+          <div class="form-group">
+            <label for="start">Contract<small class="astriks">*</small></label>
+            <br />
+
+            <ejs-dropdownlist
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'payment_status').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'payment_status').valid
+              }"
+              [fields]="orderFields"
+              placeholder="Contract"
+              [dataSource]="contractList"
+              formControlName="contract_id"
+            >
+            </ejs-dropdownlist>
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Amount Paid<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'amount_paid').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'amount_paid').valid
+            }"
+            min="0"
+            formControlName="amount_paid"
+            cssClass="e-outline"
+            placeholder="Amount Paid"
+            floatLabelType="Never"
+          ></ejs-numerictextbox>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Payer<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'payer').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'payer').valid
+              }"
+              css
+              class="e-input"
+              name="input"
+              formControlName="payer"
+              type="text"
+              placeholder="Payer"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Payment Receiver<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'payment_receiver')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(formGroup, 'payment_receiver')
+                  .valid
+              }"
+              css
+              class="e-input"
+              name="input"
+              formControlName="payment_receiver"
+              type="text"
+              placeholder="Payment Receiver"
+            />
+          </div>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Amount remaining<small class="astriks">*</small></label>
+          <div class="form-control form-control-sm"></div>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Date<small class="astriks">*</small></label>
+          <ejs-datepicker
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'date').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'date').valid
+            }"
+            [value]="dateValue"
+            placeholder="Enter date"
+            formControlName="date"
+          ></ejs-datepicker>
+        </div>
+
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label for="start">Payment Status</label>
+          <div class="form-control form-control-sm"></div>
+        </div>
+
+        <div class="mb-4 col-md-5 col-sm-12 col-xs-12">
+          <label>Attachment</label>
+          <div class="control_wrapper">
+            <ejs-uploader
+              #file
+              id="defaultfileupload"
+              formControlName="image"
+              (change)="convert_from_base64(this, file.filesData[0], 'image')"
+              sequentialUpload="true"
+              multiple="false"
+              allowedExtensions=".jpg,.jpeg,.png"
+              (selected)="fileSelected()"
+              (removing)="onFileRemove($event)"
+            ></ejs-uploader>
+          </div>
+        </div>
+        <div class="mb-4 col-md-1 col-sm-12 col-xs-12">
+          <div *ngIf="id && !isSelected && hasFile">
+            <span (click)="onOpenPdf()"
+              ><i
+                class="fa fa-file fa-1x"
+                aria-hidden="true"
+                style="color: grey; margin-top: 50px; cursor: pointer"
+              ></i
+            ></span>
+          </div>
+        </div>
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

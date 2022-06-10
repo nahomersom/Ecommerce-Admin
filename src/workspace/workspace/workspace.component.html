@@ -1,0 +1,235 @@
+<meta name="viewport" content="width=device-width" />
+<div class="control-section" >
+  <div id="wrapper" >
+    <div id="navbar" >
+      <div class="d-flex justify-content-between navbar" w-100 >
+  <div class="d-flex align-items-center" style="margin-left:19px">
+  <i class="fa fa-bars fa-2x" aria-hidden="true"  (click)="openClick()"style="cursor:pointer"></i>
+  <strong style="margin-left:19px">Easy Commerce</strong>
+  </div>
+  <div class="d-flex align-items-center icons">
+
+    <div class="request-icon" (click)="toogleRequest()" *ngIf="!security.securityObject?.is_supplier">
+      
+    <i class="fa fa-user-plus"  ></i>
+    <span class="requestToolTip">Requests</span>
+    <div class="numberOfNotifcation">
+      <span style="position: absolute;top: -4px;left: 2px;">{{security.securityObject?.notifications?.userRequest.count}}</span>
+    </div>
+    <div *ngIf="toogleRequestContent" class="notification_card">
+      <div class="card">
+        <div class="card-header">
+        <span class = "notification-header">you have{{' '+security.securityObject?.notifications?.userRequest.count+' '}}new requests</span>        
+        </div>
+        <div *ngFor="let user of security.securityObject?.notifications?.userRequest.item | slice:0:3;" class="card-content notification">
+          <div class="row">
+            <div class="col-3">
+              <i class="fa fa-user-circle fa-2x"></i>
+            </div>
+            <div class="col-9">
+             <div class="notification-body">
+               <span class="notification-text" (click)="onNotificationSelected(user.being,user.id)">
+              <span>{{user.full_name+' '}}<span style="color:grey">want to be a{{' '+user.being+' '}}</span></span>
+              <span style="color:grey">{{user.created_at+' '}}</span>
+            </span>
+             </div>
+            </div>
+            <hr/>
+          </div>
+      
+        </div>
+        <div class="card-footer text-center" >
+          <span class="footer" routerLink="request/list">view all</span>
+         </div>
+      </div>
+    </div>
+    </div>
+    <div class="request-icon" (click)="toogleOrder()" *ngIf="security.securityObject?.is_supplier">
+      <i class="fa fa-cart-plus"></i>
+      <span class="requestToolTip">Orders</span>
+      <div class="numberOfNotifcation">
+        <span style="position: absolute;top: -4px;left: 2px;">{{security.securityObject?.notifications?.orders.count}}</span>
+      </div>
+      <div *ngIf="toogleOrderContent" class="notification_card">
+        <div class="card">
+          <div class="card-header">
+          <span class = "notification-header">you have{{' '+security.securityObject?.notifications?.orders.count+' '}}new requests</span>        
+          </div>
+          <div *ngFor="let order of sampleOrder | slice:0:3;" class="card-content notification">
+            <div class="row">
+              <div class="col-3">
+                <i class="fa fa-user-circle fa-2x"></i>
+              </div>
+              <div class="col-9">
+               <div class="notification-body d-flex flex-column">
+                 <span class="notification-text">
+                <span>{{order.full_name+' '}}</span><br>
+                <span style="color:grey">Order number:{{order.order_number+' '}}</span><br>
+                <span style="color:grey">{{order.created_at+' '}}</span>
+              </span>
+               </div>
+              </div>
+          
+            </div>
+   
+          </div>
+          <div class="card-footer text-center" >
+            <span class="footer" routerLink="newOrders/list">view all</span>
+           </div>
+        </div>
+      </div>
+    </div>
+<div class="request-icon" (click)="tooglePaymentOverDue()" *ngIf="!security.securityObject?.is_supplier">
+
+  <i class="fa fa-credit-card"  ></i>
+  <span class="requestToolTip">Overdue</span>
+  <div class="numberOfNotifcation">
+    <span style="position: absolute;top: -4px;left: 2px;">{{security.securityObject?.notifications?.paymentOverdue.count}}</span>
+    <div *ngIf="tooglePaymentContent" class="notification_card">
+      <div class="card">
+        <div class="card-header">
+        <span class = "notification-header" style="font-size:15px">you have{{' '+security.securityObject?.notifications?.paymentOverdue.count+' '}}new payment overdue</span>        
+        </div>
+        <!-- <div *ngFor="let payment of security.securityObject?.notifications?.paymentOverdue.item" class="card-content notification"> -->
+          <div *ngFor="let payment of samplePaymentOverDueData | slice:0:3;">
+          <div class="row">
+            <div class="col-3">
+              <i class="fa fa-user-circle fa-2x"></i>
+            </div>
+            <div class="col-9">
+             <div class="notification-body">
+               <span class="notification-text" (click)="onNotificationSelected(payment.being,notification)">
+              <span>{{payment.full_name+' '}}</span><br>
+              <span style="color:grey">delivered date:{{payment.delivered_date+' '}}</span>
+            </span>
+             </div>
+            </div>
+          </div>
+        
+        </div>
+        <div class="card-footer text-center" >
+          <span class="footer" routerLink="paymentOverdue/list">view all</span>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="request-icon"  (click)="toogleContract()" *ngIf="!security.securityObject?.is_supplier">
+    <i class="fa fa-suitcase"></i>
+    <span class="requestToolTip">Contract</span>
+    <div class="numberOfNotifcation">
+      <span style="position: absolute;top: -4px;left: 2px;">{{security.securityObject?.notifications?.expiredContract.count}}</span>
+    </div>
+    <div *ngIf="toogleContractContent" class="notification_card">
+      <div class="card">
+        <div class="card-header">
+        <span class = "notification-header">you have{{' '+security.securityObject?.notifications?.expiredContract.count+' '}}new expired contract</span>        
+        </div>
+        <div *ngFor="let contract of security.securityObject?.notifications?.expiredContract.item | slice:0:3;" class="card-content notification">
+          <div class="row">
+            <div class="col-3">
+              <i class="fa fa-exclamation-triangle fa-2x"></i>
+            </div>
+            <div class="col-9">
+             <div class="notification-body d-flex flex-column">
+               <span class="notification-text" (click)="onContractSelected(contract.id)">
+              <span>{{contract.contract_title+' '}}</span>
+            </span>
+              <span style="color:grey; font-size:11px">deadline:{{contract.deadline+' '}}</span>
+         
+             </div>
+            </div>
+          </div>
+        
+        </div>
+        <div class="card-footer text-center" >
+          <span class="footer" routerLink="expiredContract/list">view all</span>
+         </div>
+      </div>
+    </div>
+    </div>
+    <div ngbDropdown class="d-inline-block">
+      <!-- <i class="fas fa-bell"></i><small>1</small> -->
+ 
+      <!-- To render DropDownButton with iconposition as 'top'. -->
+    
+      <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+        hi, {{ security.securityObject?.full_name }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" id="dropdownList">
+        <button ngbDropdownItem (click)="onSelect(2)" class="drop_item">
+          <span style="margin-right: 15px;">
+            <i class="fas fa-user" style="color:#442363"></i>
+          </span>
+          <span>
+            Update Profile
+          </span>
+        </button>
+        <button ngbDropdownItem (click)="onSelect(1)" class="drop_item">
+          <span style="margin-right: 15px;">
+            <i class="fas fa-key" style="color:#442363"></i>
+          </span>
+          <span>
+            Change Password
+          </span>
+        </button>
+        <button ngbDropdownItem (click)="onSelect(3)" class="drop_item">
+          <span style="margin-right: 15px;">
+            <i class="fas fa-sign-out-alt" style="color:#442363"></i>
+          </span>
+          <span>
+            Logout
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="sidebar-holder" >
+  <ejs-sidebar
+    id="sidebar-treeview"
+    class="dock-menu"
+    #sidebarTreeviewInstance
+    [width]="width"
+    [mediaQuery]="mediaQuery"
+    [target]="target"
+    [enableGestures]="false"
+  >
+    <div class="main-menu">
+      <div id="avatar" class="mt-3">
+        <i class="fa fa-user-circle fa-6x" aria-hidden="true"></i>
+      
+
+      </div>
+    <div class="mt-1 userName">{{ security.securityObject?.full_name }}</div>  
+      <div class="mt-4">
+        <!-- Treevie element declaration -->
+        <ejs-treeview
+          #tree
+          id="main-treeview"
+          (nodeClicked)="route($event)"
+          [fields]="field"
+          
+          expandOn="Click"
+        ></ejs-treeview>
+      </div>
+    </div>
+  </ejs-sidebar>
+</div>
+
+<!-- end of sidebar element -->
+
+<!-- main-content declaration -->
+<div class="main-content" id="main-text" >
+  <div class="sidebar-content" (click)="hideNotifications()">
+    <!-- <xng-breadcrumb></xng-breadcrumb> -->
+    <app-page-identity></app-page-identity >
+
+    <div class="d-flex justify-start contai" (click)="hideNotifications()">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+</div>
+</div>

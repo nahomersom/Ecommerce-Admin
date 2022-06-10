@@ -1,0 +1,55 @@
+{
+    "formPath": "ws/setting/packages",
+    "dataApi": "util/package",
+    "deleteRowApi": "util/package/delete",
+    "pageName": "Package",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": null,
+    "columns": [
+        {
+            "field": "package_name",
+            "headerText": "Package name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "price",
+            "headerText": "Price",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "payment_type",
+            "headerText": "Payment Type",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "max_ware_house",
+            "headerText": "Max Warehouse",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "max_store",
+            "headerText": "Max store",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        }
+    ]
+}

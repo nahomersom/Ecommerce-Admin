@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="bankFormGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Bank Name<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              class="e-input"
+              name="input"
+              formControlName="bank_name"
+              type="text"
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(bankFormGroup, 'bank_name').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(bankFormGroup, 'bank_name').valid
+              }"
+              placeholder="Bank Name"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Account Number<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(bankFormGroup, 'account_no').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(bankFormGroup, 'account_no').valid
+              }"
+              class="e-input"
+              name="input"
+              formControlName="account_no"
+              type="text"
+              placeholder="Account Number"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Account Created Branch<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(bankFormGroup, 'branch').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(bankFormGroup, 'branch').valid
+              }"
+              class="e-input"
+              name="input"
+              formControlName="branch"
+              type="text"
+              placeholder="Account Created Branch"
+            />
+          </div>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

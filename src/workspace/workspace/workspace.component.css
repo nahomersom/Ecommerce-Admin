@@ -1,0 +1,659 @@
+.sb-content-tab #wrapper {
+  display: none;
+}
+#navbar{
+  position:sticky;
+  z-index: 1;
+}
+hr{
+  width:92%;
+  margin-left:12px;
+}
+.sb-content-tab .center {
+  display: block;
+}
+
+#sidebar-treeview .e-treeview .e-icon-collapsible,
+  #sidebar-treeview .e-treeview .e-icon-expandable {
+    float: right;
+  }
+  #sidebar-treeview .e-treeview,
+  #sidebar-treeview .e-treeview .e-ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  #sidebar-treeview .main-menu .main-menu-header {
+    color: #656a70;
+    padding: 15px;
+    font-size: 14px;
+    width: 13em;
+    margin: 0;
+  }
+  
+  /*end of main-menu-header styles */
+  
+  /*text input styles */
+  #sidebar-treeview .main-menu .search-icon {
+    text-indent: 10px;
+    height: 30px;
+    width: 19em;
+  }
+  
+  /*end of text input styles */
+  
+  /* table of content area styles */
+  #sidebar-treeview .table-content {
+    padding: 20px;
+    height: 8em;
+  }
+  #main-text{
+    position: absolute !important;
+   
+  }
+  #main-text.main-content {
+    overflow: hidden;
+    width: 100%;
+
+  }
+  
+  #main-text .sidebar-content .line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+  }
+  
+  #main-text .sidebar-content {
+    padding: 15px;
+  }
+  
+  #main-text .sidebar-heading {
+    /* color: #442363; */
+    color:#442363;
+    margin: 40px 0;
+    padding: 2px;
+  }
+  .fa-user[_ngcontent-swt-c286] {
+    color: #442363 !important;
+  }
+  
+  #main-text .paragraph-content {
+    font-family: "Poppins", sans-serif;
+    padding: 5px;
+    font-weight: 300;
+    color: #442363;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* custom code end */
+  /* end of body and html styles */
+  
+  /* newTab support styles */
+  
+  .ej2-new .sb-header,
+  .ej2-new .sb-bread-crumb,
+  .ej2-new #action-description,
+  .ej2-new #description-section,
+  .ej2-new .action,
+  .ej2-new #description {
+    display: none;
+  }
+  
+  .ej2-new .control-section {
+    padding-left: 0px;
+  }
+  
+  .ej2-new app-root > div:first-child {
+    padding-left: 0px !important;
+  }
+  
+  .ej2-new .container-fluid,
+  .ej2-new .container-fluid .control-section,
+  #sidebar-section {
+    padding: 0;
+  }
+  
+  .ej2-new .sample-browser > .content.e-view {
+    top: 0;
+    padding: 0;
+    height: 100%;
+    text-align: initial;
+  }
+  #sidebar-treeview #main-treeview .icon {
+    font-family: "fontello";
+    font-size: 16px;
+  }
+  #header-section.main-header .icon-menu::before {
+    content: "\e801";
+    font-family: "fontello";
+    font-size: 27px;
+  }
+  
+  #sidebar-treeview #main-treeview .icon-circle-thin::before {
+    content: "\e808";
+  }
+  .icon-variants::before{
+    font-family: FontAwesome;
+    content: "\f291";
+    color:#442363;
+  }
+  .icon-variants-option::before{
+    font-family: FontAwesome;
+    content: "\f290";
+    color:#442363;
+  }
+  .icon-vehicle::before {
+    font-family: FontAwesome;
+    content: "\f1b9";
+    color: #442363;
+  }
+  
+  .icon-dashboard::before {
+    font-family: FontAwesome;
+    content: "\f201";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-supplier::before {
+    font-family: FontAwesome;
+    content: "\f0d1";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-contract::before {
+    font-family: FontAwesome;
+    content: "\f2c3";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-extension::before {
+    font-family: FontAwesome;
+    content: "\f2b5";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-catalogue::before {
+    font-family: FontAwesome;
+    content: "\f02d";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-area::before {
+    font-family: FontAwesome;
+    content: "\f041";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-categories::before {
+    font-family: FontAwesome;
+    content: "\f0ce";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-warehouse::before {
+    font-family: FontAwesome;
+    content: "\f015";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-store::before {
+    font-family: FontAwesome;
+    content: "\f217";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-storekeeper::before {
+    font-family: FontAwesome;
+    content: "\f183";
+    font-size: medium;
+    color: #442363;
+  }
+  .icon-inventory::before {
+    font-family: FontAwesome;
+    content: "\f046";
+    font-size: medium;
+    color: #442363;
+  }
+  
+  .icon-content::before {
+    font-family: FontAwesome;
+    content: "\f044";
+    font-size: medium;
+    color: #442363;
+  }
+  
+  .icon-product::before {
+    font-family: FontAwesome;
+    content: "\f187";
+    font-size: medium;
+    color: #442363;
+  }
+  
+  .icon-orders::before {
+    font-family: FontAwesome;
+    content: "\f00b";
+    color: #442363;
+  }
+  .icon-group::before {
+    font-family: FontAwesome;
+    content: "\f0c0";
+    color: #442363;
+  }
+  .icon-system::before {
+    font-family: FontAwesome;
+    content: "\f21b";
+    color: #442363;
+  }
+  
+  .icon-setting::before {
+    font-family: FontAwesome;
+    content: "\f013";
+    color: #442363;
+  }
+  
+  .icon-user::before {
+    font-family: FontAwesome;
+    content: "\f007";
+    color: #442363;
+  }
+  
+  
+  .icon-link::before {
+    font-family: FontAwesome;
+    content: "\f0c1";
+    color: #442363;
+  }
+  
+  .icon-role::before {
+    font-family: FontAwesome;
+    content: "\f0ae";
+    color: #442363;
+  }
+  
+  .icon-lookup::before {
+    font-family: FontAwesome;
+    content: "\f05a";
+    color: #442363;
+  }
+  .icon-email::before {
+    font-family: FontAwesome;
+    content: "\f0e0";
+    color: #442363;
+  }
+  .icon-box::before {
+    font-family: FontAwesome;
+    content: "\f04d";
+    color: #442363;
+  }
+  .icon-payments::before {
+    font-family: FontAwesome;
+    content: "\f09d";
+    color: #442363;
+  }
+  .icon-payment::before {
+    font-family: FontAwesome;
+    content: "\f283";
+    color: #442363;
+  }
+  .icon-bank::before {
+    font-family: FontAwesome;
+    content: "\f0d6";
+    color: #442363;
+  }
+  .icon-feedback::before {
+    font-family: FontAwesome;
+    content: "\f27b";
+    color: #442363;
+  }
+  .icon-report::before {
+    font-family: FontAwesome;
+    content: "\f0f6";
+    color: #442363;
+  }
+  .icon-language::before {
+    font-family: FontAwesome;
+    content: "\f1ab";
+    color: #442363;
+  }
+  
+  .icon-user-dropdown::before {
+    font-family: FontAwesome;
+    content: "\f007";
+    font-size: 33px;
+  }
+  .userName{
+    margin-left: 82px;
+    color: #442363;
+    font-weight: bold;
+    font-size: large;
+  }
+  h5 {
+    display: inline !important;
+    text-align:center;
+    font-size: 30px !important;
+    padding: 5px !important;
+    margin-bottom: 5px !important;
+  }
+  #avatar{
+    text-align: center;
+    color: #442363;
+  }
+  #logo{
+     position: relative;
+     top:26px;
+    text-align: center;
+    font-family: Arial;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  #logo .easy{
+    font-family: Arial;
+    font-weight: bold;
+   color:#442363;
+  
+  }
+  #logo .commerce{
+    font-family: Arial;
+    font-weight: bold;
+    color: #442363;
+    margin-left: -20px;
+  
+    
+  }
+
+
+
+
+  .e-list-icon icon-setting icon {
+    margin-top: -14px !important;
+  }
+  .dropdown-menu{
+    margin-left: -38px;
+  }
+  
+  .e-text-content,
+  .e-list-text {
+    color: gray !important;
+    /* background-color: ghostwhite !important; */
+    height: 40px !important;
+    font-weight: 300;
+  }
+  
+  .e-list-parent .e-ul {
+    margin-left: 15px !important;
+  }
+  
+  #sidebar-holder {
+    color: #365065 !important;
+  }
+  
+  #main-treeview {
+    min-height: 500px !important;
+  }
+  
+  .main-content {
+    min-height: 800px !important;
+    background-color: #f5f7ff;
+  }
+
+
+  .support {
+    margin-right: 19px !important;
+  }
+  
+  li .e-active .e-text-content > .e-list-text {
+    color: white !important;
+  }
+  
+  li .e-active .e-text-content > .e-list-icon::before {
+    color: white !important;
+  }
+  
+  li .e-hover .e-text-content > .e-list-text {
+    color: white !important;
+  }
+  
+  li .e-hover .e-text-content > .e-list-icon::before {
+    color: white !important;
+  }
+  
+  .e-treeview .e-list-item.e-active > .e-fullrow {
+    background-color: #442363 !important;
+    color: white !important;
+  }
+  .e-treeview .e-list-item.e-hover > .e-fullrow {
+    background-color: #442363 !important;
+    border-radius: 25px;
+    padding:17px;
+  }
+  
+  #sidebar-treeview .e-treeview .e-icon-collapsible,
+  #sidebar-treeview .e-treeview .e-icon-expandable {
+    float: right;
+    margin-right: 8px;
+    margin-top: 6px;
+  }
+  #user_dropdown-popup {
+    left: 1729.14px !important;
+  }
+  
+  #user_dropdown {
+    background-color: #442363 !important;
+    border: none !important;
+    margin-bottom: -14px !important;
+    margin-top: -26px !important;
+  }
+  
+  .e-dropdown-btn .e-caret,
+  .e-dropdown-btn.e-btn .e-caret {
+    font-size: 10px;
+    margin-left: 10px;
+  }
+  
+  .content-container {
+    margin-top: 15px !important;
+  }
+  
+  #sidebar-treeview #main-treeview .icon {
+    font-size: 16px;
+    margin-top: -18px;
+    margin-right: 4px;
+  }
+  
+  
+  .contai {
+    height: 750px !important;
+    overflow: scroll !important;
+
+ 
+  }
+  .contai::-webkit-scrollbar {
+    display: none;
+  }
+  
+  #dropdownBasic1 {
+    color: white !important;
+    border-color: #442363 !important;
+  }
+  
+  .drop_item {
+    color: #442363 !important;
+    font-size: 15px !important;
+    padding-bottom: 0px !important;
+  }
+  .dropdown-item:focus, .dropdown-item:hover {
+    color: #442363;
+    background-color: white;
+  }
+  #notification,
+  #notification:hover,
+  #notification:focus,
+  #notification:active {
+    color: white !important;
+    border: none !important;
+    background-color: transparent !important;
+    position: relative;
+    left: -94px;
+    top:3px;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+.navbar{
+  background-color: #442363;
+}
+i,strong,#dropdownBasic1{
+  color:white;
+}
+
+.icons{
+  gap:25px !important;
+  cursor: pointer;
+}
+@media screen and (max-width: 765px) {
+  .payment-overdue{
+    display: none;
+  }
+  .contract{
+    display: none;
+  }
+  .request-icon{
+    display: none;
+  }
+  .order-icon{
+    display: none;
+  }
+  
+  }
+  @media screen and (max-width: 320){
+    .dropdown{
+      display:none !important;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+  .payment-overdue:hover , .payment-overdue:hover .requestToolTip{
+    visibility: visible;
+    cursor: pointer;
+  }
+
+  .contract:hover, .contract:hover .requestToolTip{
+    visibility: visible;
+    cursor: pointer;
+  }
+  .requestToolTip{
+    position: absolute;
+    top: -15px;
+    right: -12px;
+    color: #442363;
+    font-size: 8px;
+    background: white;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: bold;
+    visibility: hidden;
+  }
+  
+
+  .request-icon:hover , .request-icon:hover .requestToolTip{
+    visibility: visible;
+    cursor:pointer;
+  }
+
+  .order-icon:hover, .order-icon:hover .requestToolTip{
+    visibility: visible;
+    cursor:pointer;
+   }
+  
+  .notification_card{
+    position: absolute;
+
+    left: -135px;
+    top: 32px;
+    width: 274px;
+  }
+  .notification-header{
+    color: black !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .notification-body{
+    display: flex ;
+    flex-direction: column;
+  }
+  .notification-body span{
+    color:black;
+  }
+  .notification-text{
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .notification-text:hover{
+    text-decoration: underline;
+    text-decoration-color: rgb(60, 60, 158);
+    
+  }
+  .footer{
+    color:#442363;
+    font-size: 14px;
+    
+  }
+  .footer:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .numberOfNotifcation{
+    position: absolute;
+    border-radius: 50%;
+    top: -8px;
+    left: 8px;
+    height: 14px;
+    width: 14Px;
+    color: white;
+    background-color: red;
+  
+  }
+  .fa-user-circle,.fa-exclamation-triangle{
+    color:#442363;
+    margin-top: 4px;
+    margin-left: 15px;
+  }
+  .request-icon{
+    position:relative;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

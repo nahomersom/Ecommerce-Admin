@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Value<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              class="e-input"
+              name="input"
+              formControlName="value"
+              type="text"
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'value').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'value').valid
+              }"
+              placeholder="Value"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Input Type<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(formGroup, 'input_type').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(formGroup, 'input_type').valid
+            }"
+            class="e-input"
+            name="input"
+            formControlName="input_type"
+            type="text"
+            [dataSource]="inputType"
+            [fields]="fields"
+            placeholder="Input Type"
+          ></ejs-dropdownlist>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

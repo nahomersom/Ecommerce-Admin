@@ -1,0 +1,41 @@
+{
+    "dataApi": "util/dashboard/Orders",
+    "pageName": "notification",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": false,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "showAdd":false,
+    "showDelete":false,
+    "type":"notification",
+    "formPath": "ws/orders",
+    "columns": [
+
+        {
+            "field": "full_name",
+            "headerText": "Full Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "order_number",
+            "headerText": "Order Number",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "created_at",
+            "headerText": "Created At",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+      
+    ]
+}

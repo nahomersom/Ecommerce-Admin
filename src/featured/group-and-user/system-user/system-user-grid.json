@@ -1,0 +1,48 @@
+{
+    "formPath": "ws/user-and-group/user",
+    "dataApi": "users/System",
+    "deleteRowApi": "users/System/delete",
+    "pageName": "System",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": null,
+    "columns": [
+        {
+            "field": "full_name",
+            "headerText": "Full name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "email",
+            "headerText": "Email",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "phone_number",
+            "headerText": "Phone number",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "group",
+            "headerText": "Group",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        }
+    ]
+}

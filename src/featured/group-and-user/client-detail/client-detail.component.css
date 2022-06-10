@@ -1,0 +1,83 @@
+.row{
+    margin:auto;
+}
+label {
+    color: gray;
+    font-weight: bolder;
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+}
+
+.form-control {
+    color: gray;
+    background-color:aliceblue !important;
+}
+.card {
+    /* border-radius: 20px !important; */
+}
+.card-content{
+    
+    margin-bottom: 15px !important;
+}
+
+h4 {
+    color: gray !important;
+    font-weight: bolder;
+}
+
+hr {
+    font-size: 15px !important;
+    color: gray !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+/* .active {
+    padding: 2px !important;
+    background-color: lightgreen;
+ 
+    color: whitesmoke;
+    font-weight: bolder;
+    width: 100px;
+    text-align: center;
+}
+
+.deactive {
+    padding: 2px !important;
+    background-color: rgb(247, 84, 98);
+ 
+    color: whitesmoke;
+    font-weight: bolder;
+    width: 100px;
+    text-align: center;
+} */
+
+.main {
+    padding: 10px !important;
+}
+
+img {
+    width: 150px;
+    vertical-align: middle;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.fa-user{
+    font-size: 69px !important;
+    color: gray !important;
+}
+.buttons{
+    padding: 15px;
+  }
+  button{
+    width: 80px;
+    margin: 5px;
+  }
+  .invalid {
+    border: 1px solid red !important;
+  } 
+  .e-info,.e-info:focus,.e-info:hover.e-info:active{
+      background-color: #442363;
+      border:none;
+  }

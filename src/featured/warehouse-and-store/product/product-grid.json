@@ -1,0 +1,69 @@
+{
+    "formPath": "ws/warehouse-and-store/product",
+    "dataApi": "catalogue/product",
+    "deleteRowApi": "catalogue/product/delete",
+    "pageName": "Product",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+     "thumbnail": true,
+    "image_url": "uploads/product/",
+    "columns": [
+        {
+            "field": "full_name",
+            "headerText": "Full name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "title",
+            "headerText": "Title",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "category_name",
+            "headerText": "Category Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "measurment_unit",
+            "headerText": "Measurement Unit",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "model",
+            "headerText": "Model",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "brand",
+            "headerText": "Brand",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+    ]
+}

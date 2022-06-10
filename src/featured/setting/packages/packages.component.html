@@ -1,0 +1,226 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="packagesFormGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Package Name<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(packagesFormGroup, 'package_name')
+                    .invalid && formSubmitted,
+                valid: crudService.getControl(packagesFormGroup, 'package_name')
+                  .valid
+              }"
+              class="e-input"
+              name="input"
+              type="text"
+              formControlName="package_name"
+              placeholder="Package Name"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Price<small class="astriks">*</small></label>
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'price').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'price').valid
+            }"
+            class="e-input"
+            name="input"
+            min="1"
+            type="text"
+            formControlName="price"
+            placeholder="Price"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Payment Type<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'payment_type')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'payment_type')
+                .valid
+            }"
+            placeholder="Payment Type"
+            [dataSource]="paymentType"
+            [fields]="fields"
+            formControlName="payment_type"
+            cssClass="e-outline"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Max Warehouse<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'max_ware_house')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'max_ware_house')
+                .valid
+            }"
+            formControlName="max_ware_house"
+            format="###"
+            class="e-input"
+            name="input"
+            type="text"
+            placeholder="Max Warehouse"
+            min="1"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Max Store<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'max_store')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'max_store')
+                .valid
+            }"
+            min="1"
+            formControlName="max_store"
+            class="e-input"
+            format="###"
+            name="input"
+            type="text"
+            placeholder="Max Store"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Commission<small class="astriks">*</small></label>
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'commission')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'commission')
+                .valid
+            }"
+            class="e-input"
+            name="input"
+            formControlName="commission"
+            type="text"
+            placeholder="Commission"
+            min="1"
+          >
+          </ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Max Category<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'max_category')
+                  .invalid && formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'max_category')
+                .valid
+            }"
+            class="e-input"
+            min="1"
+            format="###"
+            name="input"
+            formControlName="max_category"
+            type="text"
+            placeholder="Max Category"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Max User<small class="astriks">*</small></label>
+
+          <ejs-numerictextbox
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'max_user').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'max_user').valid
+            }"
+            min="1"
+            format="###"
+            class="e-input"
+            name="input"
+            formControlName="max_user"
+            type="text"
+            placeholder="Max User"
+          ></ejs-numerictextbox>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Group<small class="astriks">*</small></label>
+
+          <ejs-dropdownlist
+            [ngClass]="{
+              invalid:
+                crudService.getControl(packagesFormGroup, 'group').invalid &&
+                formSubmitted,
+              valid: crudService.getControl(packagesFormGroup, 'group').valid
+            }"
+            formControlName="group"
+            placeholder="Select Group"
+            cssClass="e-outline"
+            [dataSource]="lookup_data['package_group']"
+            [fields]="packageFields"
+            floatLabelType="Never"
+          ></ejs-dropdownlist>
+        </div>
+        <div class="mb-4 col-md-3 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start">Featured<small class="astriks">*</small></label>
+            <br />
+
+            <ejs-checkbox
+              [checked]="
+                packagesFormGroup.get('is_featured').value == 1
+                  ? 'true'
+                  : 'false'
+              "
+              label="Is Featured"
+              formControlName="is_featured"
+            >
+            </ejs-checkbox>
+          </div>
+        </div>
+        <div class="mb-4 col-md-3 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start">Status<small class="astriks">*</small></label>
+            <br />
+
+            <ejs-checkbox
+              [checked]="
+                packagesFormGroup.get('status').value == 1 ? 'true' : 'false'
+              "
+              label="Activation"
+              formControlName="status"
+            >
+            </ejs-checkbox>
+          </div>
+        </div>
+
+        <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+          <label>Description<small class="astastriks">*</small></label>
+
+          <ejs-textbox
+            formControlName="description"
+            cssClass="e-outline"
+            multiline="true"
+            rows="3"
+            floatLabelType="Never"
+          ></ejs-textbox>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

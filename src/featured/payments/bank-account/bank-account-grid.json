@@ -1,0 +1,47 @@
+{
+    "formPath": "ws/payments/bank-account",
+    "dataApi": "accounting/bank",
+    "deleteRowApi": "accounting/bank/delete",
+    "pageName": "Bank",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": null,
+    "columns": [
+        {
+            "field": "full_name",
+            "headerText": "Full name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+
+        {
+            "field": "bank_name",
+            "headerText": "Bank name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "account_no",
+            "headerText": "Account number",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        }
+
+    ]
+}

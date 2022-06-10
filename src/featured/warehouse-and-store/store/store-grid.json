@@ -1,0 +1,47 @@
+{
+    "formPath": "ws/warehouse-and-store/store",
+    "dataApi": "market/store",
+    "deleteRowApi": "market/store/delete",
+    "pageName": "Store",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    
+    "image_url": null,
+    "columns": [
+
+        {
+            "field": "store_name",
+            "headerText": "Store name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "category_name",
+            "headerText": "Category name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "ware_house_name",
+            "headerText": "Warehouse name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+     
+    ]
+}

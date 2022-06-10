@@ -1,0 +1,85 @@
+
+.e-card {
+   
+    width: 350px;
+ 
+    border-radius: 5px;
+  }
+  .card-header {
+    background-color:#442363;
+    color: #758afd;
+    text-align: center;
+  }
+  .brand h3 {
+    display: inline-block;
+  }
+  .easy {
+    color: #fff;
+  }
+  .delivery {
+    color: #fff;
+  }
+  #password {
+    margin-top: 15px;
+  }
+  a {
+      color:#442363;
+    text-decoration: none;
+  }
+  #fp {
+    text-align: right;
+  }
+  .e-custom {
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgb(95, 758afd, 206);
+    color: white;
+    border-color: transparent !important;
+  }
+  .forget .col-sm-6 p{
+      font-size:2px;
+  }
+  .e-custom{
+      /* background-color: #38a2f6; */
+    background-color:#442363;
+  }
+  .login {
+    cursor: pointer;
+    color: #442363;
+    /* 1color:#442363; */
+    border-color: transparent !important;
+
+  }
+ 
+ .fa-user-circle{
+  color:white !important;
+  /* color:#442363; */
+ }
+ .e-checkbox-wrapper .e-frame.e-check, .e-css.e-checkbox-wrapper .e-frame.e-check {
+  background-color: #442363;
+  border-color: #442363;
+  color: #fff;
+}
+.alert {
+  position: relative;
+  padding-top: 0rem;
+  padding-right: 1rem;
+  padding-bottom: 0rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  margin-left: 0px;
+  width: 93%;
+}
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding-top: 8px;
+  padding-right: 1rem;
+  padding-bottom: 1.25rem;
+  padding-left: 1rem;
+  font-size: 10px;
+}

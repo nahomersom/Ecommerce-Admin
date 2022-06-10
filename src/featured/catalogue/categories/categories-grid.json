@@ -1,0 +1,46 @@
+{
+    "formPath": "ws/catalogue/categories",
+    "dataApi": "catalogue/category",
+    "deleteRowApi": "catalogue/category/delete",
+    "pageName": "Category",
+    "grouped": true,
+    "groupBy": ["area_name","category_name"],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": "uploads/product/category/",
+    "columns": [
+
+        {
+            "field": "area_name",
+            "headerText": "Area Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "parent",
+            "headerText": "Parent",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "category_name",
+            "headerText": "Category Name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+        
+    ]
+}

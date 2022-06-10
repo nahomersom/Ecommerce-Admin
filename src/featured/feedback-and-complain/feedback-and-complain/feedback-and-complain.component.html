@@ -1,0 +1,88 @@
+<div class="card">
+  <div class="card-content">
+    <form [formGroup]="formGroup">
+      <div class="row">
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>From<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              formControlName="complain_by"
+              class="e-input"
+              name="input"
+              readonly="true"
+              type="text"
+              placeholder="From"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Phone Number<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              formControlName="phone_number"
+              class="e-input"
+              name="input"
+              readonly="true"
+              type="text"
+              placeholder="Phone Number"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+          <label>Email<small class="astriks">*</small></label>
+          <div class="e-input-group">
+            <input
+              formControlName="email_address"
+              class="e-input"
+              name="input"
+              readonly="true"
+              type="text"
+              placeholder="Email"
+            />
+          </div>
+        </div>
+        <div class="mb-4 col-md-3 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="start">Status<small class="astriks">*</small></label>
+            <br />
+
+            <ejs-checkbox
+              [checked]="formGroup.get('status').value == 1 ? 'true' : 'false'"
+              label="Approved"
+              formControlName="status"
+            >
+            </ejs-checkbox>
+          </div>
+        </div>
+        <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+          <label>Remark<small class="astastriks">*</small></label>
+
+          <ejs-textbox
+            formControlName="remark"
+            cssClass="e-outline"
+            multiline="true"
+            rows="3"
+            readonly="true"
+            floatLabelType="Never"
+          ></ejs-textbox>
+        </div>
+
+        <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+          <label>Complain<small class="astastriks">*</small></label>
+
+          <ejs-textbox
+            formControlName="complain"
+            readonly="true"
+            cssClass="e-outline"
+            multiline="true"
+            rows="3"
+            floatLabelType="Never"
+          ></ejs-textbox>
+        </div>
+
+        <hr />
+        <app-form-buttons (submit)="Submit()"></app-form-buttons>
+      </div>
+    </form>
+  </div>
+</div>

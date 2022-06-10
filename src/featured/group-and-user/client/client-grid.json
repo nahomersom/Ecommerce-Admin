@@ -1,0 +1,69 @@
+{
+    "formPath": "ws/user-and-group/client",
+    "dataApi": "users/client",
+    "deleteRowApi": "users/client/delete",
+    "pageName": "Client",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": "uploads/client/",
+    "profile": true,
+    "columns": [
+        {
+            "field": "full_name",
+            "headerText": "Full name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "credit_status",
+            "headerText": "Status",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },        {
+            "field": "credit_limit",
+            "headerText": "Credit limit",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "payment_option",
+            "headerText": "Payment Option",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "tin_number",
+            "headerText": "Tin number",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "phone_number",
+            "headerText": "Phone number",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "email",
+            "headerText": "Email",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        }
+    ]
+}

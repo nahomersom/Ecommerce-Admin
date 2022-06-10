@@ -1,0 +1,359 @@
+<ejs-tab #tab>
+  <form [formGroup]="formGroup">
+    <e-tabitems>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Email Configuration</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="row mb-4">
+            <div
+              class="mb-4 col-md-6 col-sm-12 col-xs-12"
+              formGroupName="email_config"
+            >
+              <label>Protocol<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'email_config.protocol')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'email_config.protocol'
+                    ).valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="protocol"
+                  placeholder="Protocol"
+                />
+              </div>
+            </div>
+            <div
+              class="mb-4 col-md-6 col-sm-12 col-xs-12"
+              formGroupName="email_config"
+            >
+              <label>Host<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'email_config.host')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'email_config.host'
+                    ).valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  placeholder="Host"
+                  formControlName="host"
+                />
+              </div>
+            </div>
+            <div
+              class="mb-4 col-md-6 col-sm-12 col-xs-12"
+              formGroupName="email_config"
+            >
+              <label>Port<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'email_config.port')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'email_config.port'
+                    ).valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  placeholder="Port"
+                  formControlName="port"
+                />
+              </div>
+            </div>
+            <div
+              class="mb-4 col-md-6 col-sm-12 col-xs-12"
+              formGroupName="email_config"
+            >
+              <label>Email<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'email_config.email')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'email_config.email'
+                    ).valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </div>
+              <span
+                ><small
+                  *ngIf="
+                    crudService
+                      .getControl(formGroup, 'email_config.email')
+                      .hasError('email')
+                  "
+                  class="error"
+                  >*Invalid Email*</small
+                ></span
+              >
+            </div>
+            <div
+              class="mb-4 col-md-6 col-sm-12 col-xs-12"
+              formGroupName="email_config"
+            >
+              <label>Password<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'email_config.password')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'email_config.password'
+                    ).valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+              </div>
+            </div>
+
+            <hr />
+            <app-tab-buttons
+              (next)="nextTab(1)"
+              (back)="previousTab(0)"
+              [disabled]="disableButton('firstTab')"
+              style="margin-left: 20px !important"
+            ></app-tab-buttons>
+          </div>
+        </ng-template>
+      </e-tabitem>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Content</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="row">
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>About Us<small class="astriks">*</small></label>
+              <ejs-richtexteditor
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'about_us').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'about_us').valid
+                }"
+                #sample
+                placeholder="Type Here..........."
+                height="250"
+                [toolbarSettings]="tools"
+                formControlName="about_us"
+              ></ejs-richtexteditor>
+            </div>
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>Contact Us<small class="astriks">*</small></label>
+              <ejs-richtexteditor
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'contact_us').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'contact_us').valid
+                }"
+                #sample
+                placeholder="Type Here..........."
+                height="250"
+                [toolbarSettings]="tools"
+                formControlName="contact_us"
+              ></ejs-richtexteditor>
+            </div>
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>Terms and Condition<small class="astriks">*</small></label>
+              <ejs-richtexteditor
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'term_condition')
+                      .invalid && formSubmitted,
+                  valid: crudService.getControl(formGroup, 'term_condition')
+                    .valid
+                }"
+                #sample
+                placeholder="Type Here..........."
+                height="250"
+                [toolbarSettings]="tools"
+                formControlName="term_condition"
+              ></ejs-richtexteditor>
+            </div>
+            <div class="mb-4 col-md-12 col-sm-12 col-xs-12">
+              <label>Privacy and Policy<small class="astriks">*</small></label>
+              <ejs-richtexteditor
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'privacy_policy')
+                      .invalid && formSubmitted,
+                  valid: crudService.getControl(formGroup, 'privacy_policy')
+                    .valid
+                }"
+                #sample
+                placeholder="Type Here..........."
+                height="250"
+                [toolbarSettings]="tools"
+                formControlName="privacy_policy"
+              ></ejs-richtexteditor>
+            </div>
+
+            <hr />
+            <app-tab-buttons
+              [disabled]="disableButton('secondTab')"
+              (next)="nextTab(2)"
+              (back)="previousTab(0)"
+              style="margin-left: 20px !important"
+            ></app-tab-buttons>
+          </div>
+        </ng-template>
+      </e-tabitem>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Default Language Keys (English)</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="mb-3">
+            <input
+              [ngClass]="{
+                invalid:
+                  crudService.getControl(formGroup, 'key').invalid &&
+                  formSubmitted,
+                valid: crudService.getControl(formGroup, 'key').valid
+              }"
+              type="search"
+              class="form-control"
+              (keypress)="onKeyEnter($event)"
+              formControlName="key"
+              placeholder="type and press enter key to add ..."
+            />
+          </div>
+          <ul class="list-group has-item" *ngIf="GA().length">
+            <li
+              class="list-group-item"
+              *ngFor="let opt of GA().controls; let i = index"
+            >
+              <div class="row">
+                <div class="col-md-11 col-sm-11 col-xs-11">
+                  <span class="text right"
+                    ><b>{{ i + 1 }}</b></span
+                  >
+                  <span class="text">{{ GG(i).get("key").value }}</span>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                  <span class="right">
+                    <i class="icon fas fa-edit mr-4" (click)="edit(i)"></i>
+                  </span>
+                  <span>
+                    <i
+                      class="icon far fa-trash-alt"
+                      (click)="remove(i, GG(i).get('id').value)"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="list-group" *ngIf="!GA().length">
+            <li class="list-group-item no-item">
+              <label>No key record found. please add one or more.</label>
+            </li>
+          </ul>
+          <hr />
+          <app-tab-buttons
+            [disabled]="disableButton('thirdTab')"
+            (next)="nextTab(3)"
+            (back)="previousTab(2)"
+            style="margin-left: 20px !important"
+          ></app-tab-buttons>
+
+          <br />
+        </ng-template>
+      </e-tabitem>
+      <e-tabitem>
+        <ng-template #headerText> General Setting </ng-template>
+        <ng-template #content class="content">
+          <div class="row mb-4">
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Max Cart Deadline<small class="astriks">*</small></label>
+              <ejs-numerictextbox
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'max_cart_deadline')
+                      .invalid && formSubmitted,
+                  valid: crudService.getControl(formGroup, 'max_cart_deadline')
+                    .valid
+                }"
+                min="1"
+                placeholder="max cart"
+                formControlName="max_cart_deadline"
+              >
+              </ejs-numerictextbox>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Tax<small class="astriks">*</small></label>
+              <ejs-numerictextbox
+                [ngClass]="{
+                  invalid:
+                    crudService.getControl(formGroup, 'tax').invalid &&
+                    formSubmitted,
+                  valid: crudService.getControl(formGroup, 'tax').valid
+                }"
+                min="1"
+                placeholder="Tax"
+                formControlName="tax"
+              >
+              </ejs-numerictextbox>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Maximum Credit Payment Date</label>
+              <ejs-datepicker
+                formControlName="max_credit_payment_date"
+              ></ejs-datepicker>
+            </div>
+            <div class="mb-4 col-md-2 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label for="start"
+                  >Stock Out Order<small class="astriks">*</small></label
+                >
+                <br />
+
+                <ejs-checkbox
+                  label="Allow Stock Out Order"
+                  formControlName="accept_stockout_order"
+                >
+                </ejs-checkbox>
+              </div>
+            </div>
+            <hr />
+            <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+          </div>
+        </ng-template>
+      </e-tabitem>
+    </e-tabitems>
+  </form>
+</ejs-tab>

@@ -1,0 +1,618 @@
+<ejs-tab #tab>
+  <form [formGroup]="formGroup">
+    <e-tabitems>
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Product</div>
+        </ng-template>
+
+        <ng-template #content class="content">
+          <div class="row mb-4">
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Title<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'title').invalid &&
+                      formSubmitted,
+                    valid: crudService.getControl(formGroup, 'title').valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="title"
+                  placeholder="Title"
+                />
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Category<small class="astriks">*</small></label>
+              <div class="form-group">
+                <p-cascadeSelect
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'product_category_id')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(
+                      formGroup,
+                      'product_category_id'
+                    ).valid
+                  }"
+                  [(ngModel)]="selectedNode"
+                  [options]="parentCategoryList"
+                  optionLabel="text"
+                  optionGroupLabel="text"
+                  formControlName="product_category_id"
+                  [placeholder]="selectedCategory ?? placeholder"
+                  [optionGroupChildren]="['children', 'children']"
+                  [style]="{ height: '32px', width: '100%' }"
+                >
+                </p-cascadeSelect>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Brand<small class="astriks">*</small></label>
+              <div class="form-group">
+                <div class="e-input-group">
+                  <input
+                    [ngClass]="{
+                      invalid:
+                        crudService.getControl(formGroup, 'brand').invalid &&
+                        formSubmitted,
+                      valid: crudService.getControl(formGroup, 'brand').valid
+                    }"
+                    class="e-input"
+                    name="input"
+                    type="text"
+                    formControlName="brand"
+                    placeholder="Brand"
+                  />
+                </div>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.email.hasError('email')">
+                              <span class="validation-error">*Invalid Email*</span>
+                            </span> -->
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Model<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'model').invalid &&
+                      formSubmitted,
+                    valid: crudService.getControl(formGroup, 'model').valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="model"
+                  placeholder="Model"
+                />
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Measurement Unit<small class="astriks">*</small></label>
+              <div class="form-group">
+                <ejs-dropdownlist
+                  placeholder="Measurement Unit"
+                  [dataSource]="lookup_data['measurement_unit']"
+                  [fields]="fields"
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'measurment_unit')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(formGroup, 'measurment_unit')
+                      .valid
+                  }"
+                  formControlName="measurment_unit"
+                >
+                </ejs-dropdownlist>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+              </div>
+            </div>
+
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Color<small class="astriks">*</small></label>
+              <div class="form-group">
+                <ejs-dropdownlist
+                  placeholder="Color"
+                  [dataSource]="lookup_data['color']"
+                  [fields]="fields"
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'color').invalid &&
+                      formSubmitted,
+                    valid: crudService.getControl(formGroup, 'color').valid
+                  }"
+                  formControlName="color"
+                >
+                </ejs-dropdownlist>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Minimum Order<small class="astriks">*</small></label>
+              <div class="form-group">
+                <ejs-numerictextbox
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'min_order').invalid &&
+                      formSubmitted,
+                    valid: crudService.getControl(formGroup, 'min_order').valid
+                  }"
+                  format="###"
+                  placeholder="Minimum order"
+                  formControlName="min_order"
+                  min="1"
+                >
+                </ejs-numerictextbox>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+              </div>
+            </div>
+
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Description<small class="astriks">*</small></label>
+              <div class="e-input-group">
+                <input
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'description')
+                        .invalid && formSubmitted,
+                    valid: crudService.getControl(formGroup, 'description')
+                      .valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="description"
+                  placeholder="description"
+                />
+              </div>
+            </div>
+            <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+            <div class="mt-4 col-md-2 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label for="start"
+                  >Variation<small class="astriks">*</small></label
+                >
+                <br />
+
+                <ejs-checkbox
+                  (change)="hasVariant()"
+                  formControlName="has_variant"
+                  cssClass="e-success"
+                  label="Has Variant"
+                >
+                </ejs-checkbox>
+              </div>
+            </div>
+            <div class="mt-4 col-md-2 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label for="start"
+                  >Status<small class="astriks">*</small></label
+                >
+                <br />
+
+                <ejs-checkbox label="Activation" formControlName="status">
+                </ejs-checkbox>
+              </div>
+            </div>
+            <div class="mt-4 col-md-2 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label for="start"
+                  >Accept Stock Out Order<small class="astriks">*</small></label
+                >
+                <br />
+
+                <ejs-checkbox
+                  label="Accept"
+                  formControlName="accept_stockout_order"
+                >
+                </ejs-checkbox>
+              </div>
+            </div>
+            <div class="mb-4 col-md-6 col-sm-12 col-xs-12">
+              <label>Price<small class="astriks">*</small></label>
+              <div class="form-group">
+                <ejs-numerictextbox
+                  [ngClass]="{
+                    invalid:
+                      crudService.getControl(formGroup, 'price').invalid &&
+                      formSubmitted,
+                    valid: crudService.getControl(formGroup, 'price').valid
+                  }"
+                  [disabled]="variant"
+                  formControlName="price"
+                  min="0"
+                >
+                </ejs-numerictextbox>
+
+                <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                              <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                              </span> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <h3>Attribute</h3>
+              <div
+                class="mb-4 col-md-5 col-sm-12 col-xs-12"
+                formGroupName="attributes"
+              >
+                <div class="form-group">
+                  <ejs-dropdownlist
+                    placeholder="attribute"
+                    [dataSource]="lookup_data['product_attributes']"
+                    [fields]="fields"
+                    formControlName="attribute"
+                    [ngClass]="{
+                      invalid: !attributeArray.length && formSubmitted,
+                      valid: crudService.getControl(
+                        formGroup,
+                        'attributes.attribute'
+                      ).valid
+                    }"
+                  >
+                  </ejs-dropdownlist>
+
+                  <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.password.hasError('minlength')">
+                      <span class="validation-error">*Your password must be at least 5 characters long*</span>
+                      </span> -->
+                </div>
+              </div>
+
+              <div
+                class="mb-4 col-md-5 col-sm-12 col-xs-12"
+                formGroupName="attributes"
+              >
+                <div class="form-group">
+                  <div class="e-input-group">
+                    <input
+                      [ngClass]="{
+                        invalid: !attributeArray.length && formSubmitted,
+                        valid: crudService.getControl(
+                          formGroup,
+                          'attributes.value'
+                        ).valid
+                      }"
+                      class="e-input"
+                      name="input"
+                      type="text"
+                      formControlName="value"
+                      placeholder="Value"
+                    />
+                  </div>
+
+                  <!-- <span class="e-error" *ngIf="formSubmitted && EmailSettingGroup.controls.email.hasError('email')">
+                      <span class="validation-error">*Invalid Email*</span>
+                    </span> -->
+                </div>
+              </div>
+              <div class="mb-4 col-md-2 col-sm-12 col-xs-12">
+                <div class="" *ngIf="!isAttributeEdit">
+                  <button
+                    ejs-button
+                    cssClass="e-round"
+                    iconCss="e-icons e-plus-icon"
+                    (click)="addAttribute('attributes')"
+                    [disabled]="
+                      crudService.getControl(this.formGroup, 'attributes')
+                        .invalid
+                    "
+                  ></button>
+                </div>
+                <div class="" *ngIf="isAttributeEdit">
+                  <button
+                    ejs-button
+                    cssClass="e-round"
+                    iconCss="e-icons e-edit"
+                    (click)="update('attributes')"
+                    [disabled]="
+                      crudService.getControl(this.formGroup, 'attributes')
+                        .invalid
+                    "
+                  ></button>
+                </div>
+              </div>
+
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Attribute</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="attributeArray.length">
+                  <tr *ngFor="let opt of attributeArray; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ opt.attribute | titlecase }}</td>
+                    <td>{{ opt.value | titlecase }}</td>
+                    <td>
+                      <button
+                        ejs-button
+                        cssClass="e-link"
+                        iconCss="icon-delete"
+                        (click)="onDelete(i, 'attributes', 'attributes')"
+                      ></button>
+                      <button
+                        ejs-button
+                        cssClass="e-link"
+                        iconCss="icon-view"
+                        (click)="onUpdate(i, 'attributes', 'attributeArray')"
+                      ></button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="!attributeArray.length">
+                  <tr>
+                    <td align="center" colspan="4">no record found</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row" *ngIf="variant">
+              <h3>Product Variant</h3>
+              <div
+                class="mb-4 col-md-6 col-sm-12 col-xs-12"
+                formGroupName="detail"
+              >
+                <div class="form-group">
+                  <ejs-multiselect
+                    [ngClass]="{
+                      invalid: !variantsArray.length && formSubmitted,
+                      valid: crudService.getControl(formGroup, 'detail.variant')
+                        .valid
+                    }"
+                    id="multiselectelement"
+                    [mode]="mode"
+                    [dataSource]="variantsLists"
+                    (close)="onCloseVariant($event)"
+                    [fields]="productFields"
+                    placeholder=" -- please select variants --"
+                    #variants
+                  ></ejs-multiselect>
+                </div>
+              </div>
+              <div
+                class="mb-4 col-md-6 col-sm-12 col-xs-12"
+                formGroupName="detail"
+              >
+                <div class="form-group">
+                  <ejs-dropdownlist
+                    [ngClass]="{
+                      invalid: !variantsArray.length && formSubmitted,
+                      valid: crudService.getControl(formGroup, 'detail.variant')
+                        .valid
+                    }"
+                    [fields]="productFields"
+                    [dataSource]="variantList"
+                    class="e-input"
+                    name="input"
+                    type="text"
+                    formControlName="variant"
+                    placeholder="-- select variant option --"
+                    (select)="onSelect($event, ms)"
+                    (removed)="onRemoved($event.itemData?.variant)"
+                  ></ejs-dropdownlist>
+                </div>
+              </div>
+
+              <div class="mb-4 col-md-8 col-sm-12 col-xs-12">
+                <span
+                  *ngIf="variantCombinationText.length"
+                  class="form-control"
+                  style="background: #e9ecef; color: #6c757d"
+                >
+                  {{ variantCombinationText | json }}
+                </span>
+              </div>
+
+              <div
+                class="mb-4 col-md-3 col-sm-12 col-xs-12"
+                formGroupName="detail"
+                *ngIf="variantCombinationText.length"
+              >
+                <ejs-numerictextbox
+                  [ngClass]="{
+                    invalid: !variantsArray.length && formSubmitted,
+                    valid: crudService.getControl(formGroup, 'detail.price')
+                      .valid
+                  }"
+                  class="e-input"
+                  name="input"
+                  type="text"
+                  formControlName="price"
+                  placeholder="price"
+                ></ejs-numerictextbox>
+              </div>
+
+              <div
+                class="mb-4 col-md-1 col-sm-12 col-xs-12"
+                *ngIf="variantCombinationText.length"
+              >
+                <div class="" *ngIf="!isVariantEdit">
+                  <button
+                    ejs-button
+                    cssClass="e-round"
+                    iconCss="e-icons e-plus-icon"
+                    (click)="addAttribute('detail')"
+                    [disabled]="
+                      crudService.getControl(this.formGroup, 'detail')
+                        .invalid || disableProductVariant
+                    "
+                  ></button>
+                </div>
+                <div class="" *ngIf="isVariantEdit">
+                  <button
+                    ejs-button
+                    cssClass="e-round"
+                    iconCss="e-icons e-edit"
+                    (click)="update('detail')"
+                  ></button>
+                </div>
+              </div>
+              <hr />
+
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Variant</th>
+                    <!-- <th scope="col">Quantity</th> -->
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="variantsArray.length">
+                  <tr *ngFor="let opt of variantsArray; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ variantsTextArray[i] | json }}</td>
+                    <!-- <td>{{ opt.quantity }}</td> -->
+                    <td>{{ opt.price | currency }}</td>
+                    <td>
+                      <button
+                        ejs-button
+                        cssClass="e-link"
+                        iconCss="icon-delete"
+                        (click)="onDelete(i, 'variant', 'detail')"
+                      ></button>
+                      <button
+                        ejs-button
+                        cssClass="e-link"
+                        iconCss="icon-view"
+                        (click)="onUpdate(i, 'detail', 'variantsArray')"
+                      ></button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="!variantsArray.length">
+                  <tr>
+                    <td align="center" colspan="6">no record found</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+         <div class="row">
+          <app-tab-buttons
+            (next)="nextTab(1)"
+            (back)="previousTab(0)"
+            [disabled]="disableButton()"
+          ></app-tab-buttons>
+         </div>
+
+        </ng-template>
+      </e-tabitem>
+
+      <e-tabitem>
+        <ng-template #headerText>
+          <div>Product Image</div>
+        </ng-template>
+        <ng-template #content class="content">
+          <div class="row mb">
+            <label>Product Image</label>
+            <span
+              *ngIf="
+                formSubmitted &&
+                service.getControl(formGroup, 'image').hasError('required')
+              "
+              class="error"
+            >
+              <small> * image is required *</small></span
+            >
+            <ejs-uploader
+              #file
+              id="file"
+              allowedExtensions="image/*"
+              minFi1eSize="10000"
+              maxFileSize="1500000"
+              [showFileList]="false"
+              [autoUpload]="false"
+              (change)="convert_from_base64(this, file.filesData, 'image')"
+            ></ejs-uploader>
+          </div>
+          <ul>
+            <li *ngFor="let image of imageArray; let i = index" id="image">
+              <img [src]="image" (click)="showLightbox(i, image)" />
+              <span (click)="onTrash(i, image)"
+                ><i class="fa fa-times-circle fa-2x" id="productImage"></i
+              ></span>
+            </li>
+          </ul>
+
+          <ng-image-fullscreen-view
+            [images]="imageObject"
+            [imageIndex]="currentIndex"
+            [show]="showFlag"
+            (close)="closeEventHandler()"
+          >
+            <label>Thumbnail</label>
+          </ng-image-fullscreen-view>
+          <div class="row mb">
+            <label>Thumbnail</label>
+            <span
+              *ngIf="
+                formSubmitted &&
+                service.getControl(formGroup, 'thumbnail').hasError('required')
+              "
+              class="error"
+            >
+              <small> * image is required *</small></span
+            >
+            <ejs-uploader
+              #thumbnailFile
+              allowedExtensions="image/*"
+              minFi1eSize="10000"
+              maxFileSize="1500000"
+              [showFileList]="false"
+              multiple="false"
+              [autoUpload]="false"
+              (change)="
+                convert_from_base64(
+                  this,
+                  thumbnailFile.filesData[0],
+                  'thumbnail'
+                )
+              "
+            ></ejs-uploader>
+          </div>
+          <div *ngIf="thumbnail" style="margin-left: 27px !important">
+            <img [src]="thumbnail" />
+            <span (click)="onTrash(null, thumbnail)"
+              ><i
+                class="fa fa-times-circle fa-2x"
+                id="productThumbnailImage"
+              ></i
+            ></span>
+          </div>
+         <div class="row">
+          <app-form-buttons (submit)="Submit($event)"></app-form-buttons>
+
+         </div>
+    
+        </ng-template>
+      </e-tabitem>
+    </e-tabitems>
+  </form>
+</ejs-tab>

@@ -1,0 +1,57 @@
+{
+    "dataApi": "util/dashboard/ExpiredContract",
+    "pageName": "notification",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": false,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "showAdd":false,
+    "showDelete":false,
+    "type":"notification",
+    "formPath":"ws/supplier/contract",
+    "columns": [
+
+        {
+            "field": "full_name",
+            "headerText": "Full Name",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "contract_title",
+            "headerText": "Contract Title",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "package_name",
+            "headerText": "Package Name",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "deadline",
+            "headerText": "Deadline",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+        {
+            "field": "expired_days",
+            "headerText": "Expired days",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+      
+    ]
+}

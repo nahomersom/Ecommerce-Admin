@@ -1,0 +1,41 @@
+{
+    "formPath": "ws/setting/content",
+    "dataApi": "util/content",
+    "deleteRowApi": "util/content/delete",
+    "pageName": "Content",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": null,
+    "columns": [
+        {
+            "field": "content_type",
+            "headerText": "Content Type",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "image_type",
+            "headerText": "Image Type",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        },
+        {
+            "field": "content_title",
+            "headerText": "Content Title",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true
+        }
+    ]
+}

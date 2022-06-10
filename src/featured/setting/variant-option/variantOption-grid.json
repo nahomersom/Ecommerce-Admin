@@ -1,0 +1,39 @@
+{
+    "formPath": "ws/setting/variant-option",
+    "dataApi": "variant/option",
+    "deleteRowApi": "variant/option/delete",
+    "pageName": "Option",
+    "grouped": false,
+    "groupBy": [],
+    "showSearch": true,
+    "incomingCommand": [],
+    "showCollapseAndExpand": true,
+    "allowToolbar": true,
+    "showExcelExport": true,
+    "showPdfExport": true,
+    "showColumnChooser": true,
+    "showFilter": true,
+    "allowCheckbox": true,
+    "image_url": null,
+    "columns": [
+
+        {
+            "field": "option_value",
+            "headerText": "Option Value",
+            "textAlign": "left",
+            "width": 80,
+            "visible": true,
+            "asCheckbox": false
+        },
+    
+        {
+            "field": "created_at",
+            "headerText": "Created At",
+            "textAlign": "left",
+            "width": 100,
+            "visible": true,
+            "asCheckbox": false
+        }
+       
+    ]
+}
